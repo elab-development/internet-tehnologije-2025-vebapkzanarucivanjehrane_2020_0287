@@ -27,7 +27,7 @@ class Porudzbina extends Model
     }
 
     public function stavkePorudzbine() {
-        return $this->hasMany(StavkaPorudzbine::class);
+        return $this->hasMany(StavkaPorudzbine::class, 'porudzbina_id');
     }
 }
 

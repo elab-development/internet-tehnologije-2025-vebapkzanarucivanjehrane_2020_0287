@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class StavkaPorudzbine extends Model
 {
-   protected $fillable = [
+    protected $table = 'stavke_porudzbine';
+
+    protected $fillable = [
           'porudzbina_id',
           'jelo_id',
           'kolicina',
@@ -19,10 +21,10 @@ class StavkaPorudzbine extends Model
     ];
 
     public function porudzbina() {
-        return $this->belongsTo(Porudzbina::class);
+        return $this->belongsTo(Porudzbina::class, 'porudzbina_id');
     }
 
     public function jelo() {
-        return $this->belongsTo(Jelo::class);
+        return $this->belongsTo(Jelo::class, 'jelo_id');
     }
 }
