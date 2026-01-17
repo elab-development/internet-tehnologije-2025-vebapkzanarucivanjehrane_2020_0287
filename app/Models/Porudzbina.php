@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Porudzbina extends Model
 {
     protected $fillable = [
-        'porudzbina_id',
+        'korisnik_id',
         'vreme_kreiranja',
         'status',
         'ukupna_cena',
     ];
 
-        protected $casts = [
+    protected $casts = [
          'vreme_kreiranja' => 'datetime',
          'ukupna_cena' => 'decimal:2',
     ];

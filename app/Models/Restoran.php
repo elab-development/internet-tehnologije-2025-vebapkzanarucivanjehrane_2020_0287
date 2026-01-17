@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Restoran extends Model
 {
     protected $fillable = [
-        'restoran_id',
+        'korisnik_id',
         'lokacija',
         'aktivan',
         'naziv'
