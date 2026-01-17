@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jelo extends Model
 {
-   protected $fillable = [
+    protected $table = 'jela';
+    
+    protected $fillable = [
         'restoran_id',
         'naziv',
         'opis',
