@@ -17,5 +17,17 @@ class Porudzbina extends Model
          'vreme_kreiranja' => 'datetime',
          'ukupna_cena' => 'decimal:2',
     ];
+    
+   public function korisnik() {
+        return $this->belongsTo(User::class, 'korisnik_id');
+    }
+
+    public function dostavljac() {
+        return $this->belongsTo(Dostavljac::class, 'dostavljac_id');
+    }
+
+    public function stavkePorudzbine() {
+        return $this->hasMany(StavkaPorudzbine::class);
+    }
 }
 

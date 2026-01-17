@@ -7,13 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Restoran extends Model
 {
     protected $fillable = [
-        'korisnik_id',
+        'naziv',
         'lokacija',
-        'aktivan',
-        'naziv'
+        'aktivan'
     ];
 
     protected $casts = [
         'aktivan' => 'boolean'
     ];
+
+    public function jela() {
+        return $this->hasMany(Jelo::class);
+    }
+
+    public function recenzije() {
+        return $this->hasMany(Recenzija::class);
+    }
 }

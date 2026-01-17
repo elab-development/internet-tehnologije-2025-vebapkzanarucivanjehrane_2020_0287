@@ -17,4 +17,12 @@ class StavkaPorudzbine extends Model
         'cena' => 'decimal:2',
         'kolicina' => 'integer',
     ];
+
+    public function porudzbina() {
+        return $this->belongsTo(Porudzbina::class);
+    }
+
+    public function jelo() {
+        return $this->belongsTo(Jelo::class);
+    }
 }

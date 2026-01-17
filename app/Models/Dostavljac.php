@@ -11,4 +11,8 @@ class Dostavljac extends Model
         'kontakt',
     ];
 
+    public function porudzbine() {
+        return $this->hasMany(Porudzbina::class);
+    }
+
 }

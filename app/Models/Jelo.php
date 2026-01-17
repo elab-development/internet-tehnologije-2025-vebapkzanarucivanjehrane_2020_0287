@@ -16,4 +16,12 @@ class Jelo extends Model
    protected $casts = [
         'cena' => 'decimal:2'
    ];
+
+   public function restoran() {
+        return $this->belongsTo(Restoran::class);
+    }
+
+    public function stavkePorudzbine() {
+        return $this->hasMany(StavkaPorudzbine::class);
+    }
 }

@@ -47,4 +47,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function porudzbine() {
+        return $this->hasMany(Porudzbina::class);
+    }
+
+    public function recenzije() {
+        return $this->hasMany(Recenzija::class);
+    }
 }

@@ -16,4 +16,12 @@ class Recenzija extends Model
         protected $casts = [
         'ocena' => 'integer',
          ];
+
+         public function korisnik() {
+            return $this->belongsTo(User::class);
+        }
+
+        public function restoran() {
+            return $this->belongsTo(Restoran::class);
+        }   
 }
