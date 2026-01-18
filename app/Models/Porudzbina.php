@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Porudzbina extends Model
-{
+{   
+    use HasFactory;
+    protected $table = 'porudzbine';
     protected $fillable = [
-        'korisnik_id',
+        'user_id',
         'vreme_kreiranja',
         'status',
         'ukupna_cena',
+        'adresa_isporuke',
     ];
 
     protected $casts = [
@@ -19,7 +23,7 @@ class Porudzbina extends Model
     ];
     
    public function korisnik() {
-        return $this->belongsTo(User::class, 'korisnik_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function dostavljac() {

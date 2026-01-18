@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('recenzije', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //povezujemo sa korisnikom
+            $table->foreignId('korisnik_id')->constrained('users')->onDelete('cascade'); //povezujemo sa korisnikom
             $table->foreignId('restoran_id')->constrained('restorani')->onDelete('cascade'); //povezujemo sa restoranom
             $table->text('komentar');
             $table->integer('ocena'); 

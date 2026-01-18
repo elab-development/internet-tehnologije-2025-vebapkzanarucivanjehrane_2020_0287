@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('porudzbine', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //povezujemo tabelu sa korisnikom
+            $table->foreignId('korisnik_id')->constrained('users')->onDelete('cascade'); //povezujemo tabelu sa korisnikom
             $table->foreignId('dostavljac_id')->nullable()->constrained('dostavljaci')->onDelete('set null'); //povezujemo sa dostavljacem
             $table->dateTime('vreme_kreiranja');
             $table->enum('status', ['na_cekanju', 'u_pripremi', 'dostava_u_toku', 'isporuceno', 'otkazano'])
                   ->default('na_cekanju');
             $table->decimal('ukupna_cena', 10, 2);
+            $table->string('adresa_isporuke');
             $table->timestamps();
         });
     }

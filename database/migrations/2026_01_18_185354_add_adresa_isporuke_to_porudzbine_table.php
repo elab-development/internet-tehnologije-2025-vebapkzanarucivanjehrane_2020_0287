@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('recenzije', function (Blueprint $table) {
-            $table->dropColumn('naslov');
-            $table->unsignedTinyInteger('ocena')->change(); //znaci ocena ne moze biti negativna (dodatno ogranicenje)
+        Schema::table('porudzbine', function (Blueprint $table) {
+            $table->string('adresa_isporuke')->nullable()->after('status');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('recenzije', function (Blueprint $table) {
-            $table->string('naslov');
-            $table->integer('ocena')->change();
+        Schema::table('porudzbine', function (Blueprint $table) {
+            $table->dropColumn('adresa_isporuke');
         });
     }
 };
