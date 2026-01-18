@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement("SET FOREIGN_KEY_CHECKS=0;"); //znaci ne proverava strane kljuceve tokom brisanja podataka
+        DB::statement("SET FOREIGN_KEY_CHECKS=0;"); //znaci ne proverava spoljne kljuceve tokom brisanja podataka
 
         StavkaPorudzbine::truncate();
         Recenzija::truncate();
