@@ -22,7 +22,7 @@ class RecenzijaFactory extends Factory
             'user_id' => User::factory(),
             'restoran_id' => Restoran::factory(),
             'ocena' => $this->faker->numberBetween(1, 5),
-            'komentar' => $this->faker->paragraph(),
+            'komentar' => $this->faker->sentence(10),
         ];
     }
 }

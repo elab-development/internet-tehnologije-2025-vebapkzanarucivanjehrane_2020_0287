@@ -20,7 +20,7 @@ class JeloFactory extends Factory
         return [
             'restoran_id' => Restoran::factory(),
             'naziv' => $this->faker->word(),
-            'opis' => $this->faker->paragraph(),
+            'opis' => fake()->sentence(10),
             'cena' => $this->faker->randomFloat(2, 100, 1000),
         ];
     }

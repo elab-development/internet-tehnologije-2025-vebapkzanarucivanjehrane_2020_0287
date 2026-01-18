@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('porudzbine', function (Blueprint $table) {
-            $table->string('adresa_isporuke')->nullable()->after('status');
+        Schema::table('stavke_porudzbine', function (Blueprint $table) {
+            $table->dropColumn('podtotal');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('porudzbine', function (Blueprint $table) {
-            $table->dropColumn('adresa_isporuke');
+        Schema::table('stavke_porudzbine', function (Blueprint $table) {
+            $table->decimal('podtotal', 8, 2)->after('kolicina');
         });
     }
 };
