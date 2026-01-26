@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {
+    protected $primaryKey = 'korisnik_id';
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
 
@@ -48,5 +49,15 @@ class User extends Authenticatable
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    public function recenzije()
+    {
+        return $this->hasMany(Recenzija::class, 'korisnik_id');
+    }
+
+    public function porudzbine()
+    {
+        return $this->hasMany(Porudzbina::class, 'korisnik_id');
     }
 }
