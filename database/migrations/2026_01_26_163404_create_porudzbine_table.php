@@ -18,6 +18,7 @@ return new class extends Migration
             $table->datetime('vreme_kreiranja');
             $table->string('status');
             $table->decimal('ukupna_cena', 8, 2);
+            $table->string('adresa_isporuke');
             $table->timestamps();
         });
     }

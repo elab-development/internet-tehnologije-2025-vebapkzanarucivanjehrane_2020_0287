@@ -16,8 +16,6 @@ class StavkaPorudzbine extends Model
     ];
 
     protected $casts = [
-        'porudzbina_id' => 'integer',
-        'jelo_id' => 'integer',
         'kolicina' => 'integer',
         'cena' => 'decimal:2',
     ];

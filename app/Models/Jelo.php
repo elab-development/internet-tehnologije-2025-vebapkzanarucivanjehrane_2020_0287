@@ -27,4 +27,8 @@ class Jelo extends Model
         return $this->belongsTo(Restoran::class, 'restoran_id');
     }
     
+    public function stavke()
+    {
+        return $this->hasMany(StavkaPorudzbine::class, 'jelo_id');
+    }
 }

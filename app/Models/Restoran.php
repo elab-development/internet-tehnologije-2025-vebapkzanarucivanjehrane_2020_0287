@@ -17,16 +17,16 @@ class Restoran extends Model
 
     protected $casts = [
         'naziv' => 'string',
-        'adresa' => 'string',
-        'kontakt' => 'string',
+        'lokacija' => 'string',
+        'aktivan' => 'boolean',
     ];
     public function jela(){
-        return $this->hasMany(Jelo::class, 'restoran_id');
+        return $this->hasMany(Jelo::class);
     } 
   
-    public function recenzija(): HasMany
+    public function recenzije(): HasMany
     {
-        return $this->hasMany(Recenzija::class, 'restoran_id');
+        return $this->hasMany(Recenzija::class);
     }
 
 }

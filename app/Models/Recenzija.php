@@ -16,8 +16,6 @@ class Recenzija extends Model
     ];
 
     protected $casts = [
-        'korisnik_id' => 'integer',
-        'restoran_id' => 'integer',
         'ocena' => 'integer',
         'komentar' => 'string',
     ];

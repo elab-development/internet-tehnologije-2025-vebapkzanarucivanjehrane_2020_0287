@@ -10,13 +10,14 @@ class Porudzbina extends Model
 
     protected $fillable = [
         'dostavljac_id',
+        'korisnik_id',
         'vreme_kreiranja',
         'status',
         'ukupna_cena',
+        'adresa_isporuke',
     ];
 
     protected $casts = [
-        'dostavljac_id' => 'integer',
         'vreme_kreiranja' => 'datetime',
         'status' => 'string',
         'ukupna_cena' => 'decimal:2',
