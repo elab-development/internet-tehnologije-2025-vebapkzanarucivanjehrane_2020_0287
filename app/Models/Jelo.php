@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Jelo extends Model
 {
     protected $table = 'jela';
-    protected $primaryKey = 'jelo_id';
 
     protected $fillable = [
         'restoran_id',

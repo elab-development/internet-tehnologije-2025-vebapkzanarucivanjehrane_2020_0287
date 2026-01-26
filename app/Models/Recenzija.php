@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Recenzija extends Model
 {
     protected $table = 'recenzije';
-    protected $primaryKey = 'recenzija_id';
 
     protected $fillable = [
         'korisnik_id',

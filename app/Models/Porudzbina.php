@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Porudzbina extends Model
 {
     protected $table = 'porudzbine';
-    protected $primaryKey = 'porudzbina_id';
 
     protected $fillable = [
         'dostavljac_id',
@@ -25,7 +24,7 @@ class Porudzbina extends Model
 
     public function dostavljac()
     {
-        return $this->belongsTo(Dostavljac::class, 'dostavljac_id');
+        return $this->belongsTo(Dostavljac::class);
     }
 
     public function stavke()
