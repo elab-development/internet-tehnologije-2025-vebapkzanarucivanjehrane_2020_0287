@@ -10,13 +10,11 @@ class Dostavljac extends Model
     protected $primaryKey = 'dostavljac_id';
 
     protected $fillable = [
-        'dostavljac_id',    
         'ime',
         'kontakt',
         'adresa',
     ];
         protected $casts = [
-        'dostavljac_id' => 'integer',  
          'ime' => 'string',
          'kontakt' => 'string',
          'adresa' => 'string',

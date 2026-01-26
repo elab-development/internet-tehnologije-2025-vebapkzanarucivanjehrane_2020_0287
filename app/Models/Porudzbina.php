@@ -10,7 +10,6 @@ class Porudzbina extends Model
     protected $primaryKey = 'porudzbina_id';
 
     protected $fillable = [
-        'porudzbina_id',
         'dostavljac_id',
         'vreme_kreiranja',
         'status',
@@ -18,7 +17,6 @@ class Porudzbina extends Model
     ];
 
     protected $casts = [
-        'porudzbina_id' => 'integer',
         'dostavljac_id' => 'integer',
         'vreme_kreiranja' => 'datetime',
         'status' => 'string',

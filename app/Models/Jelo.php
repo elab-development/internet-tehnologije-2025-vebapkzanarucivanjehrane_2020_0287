@@ -10,7 +10,6 @@ class Jelo extends Model
     protected $primaryKey = 'jelo_id';
 
     protected $fillable = [
-        'jelo_id',
         'restoran_id',
         'naziv',
         'opis',
@@ -18,7 +17,6 @@ class Jelo extends Model
     ];
 
     protected $casts = [
-        'jelo_id' => 'integer',
         'naziv' => 'string',
         'opis' => 'string',
         'cena' => 'decimal:2',

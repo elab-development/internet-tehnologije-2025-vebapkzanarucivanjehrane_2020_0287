@@ -10,7 +10,6 @@ class StavkaPorudzbine extends Model
     protected $primaryKey = 'stavka_id';
 
     protected $fillable = [
-        'stavka_id',
         'porudzbina_id',
         'jelo_id',
         'kolicina',
@@ -18,7 +17,6 @@ class StavkaPorudzbine extends Model
     ];
 
     protected $casts = [
-        'stavka_id' => 'integer',
         'porudzbina_id' => 'integer',
         'jelo_id' => 'integer',
         'kolicina' => 'integer',

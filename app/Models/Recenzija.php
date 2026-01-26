@@ -10,7 +10,6 @@ class Recenzija extends Model
     protected $primaryKey = 'recenzija_id';
 
     protected $fillable = [
-        'recenzija_id',
         'korisnik_id',
         'restoran_id',
         'ocena',
@@ -18,7 +17,6 @@ class Recenzija extends Model
     ];
 
     protected $casts = [
-        'recenzija_id' => 'integer',
         'korisnik_id' => 'integer',
         'restoran_id' => 'integer',
         'ocena' => 'integer',

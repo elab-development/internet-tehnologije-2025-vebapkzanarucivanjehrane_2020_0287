@@ -10,14 +10,12 @@ class Restoran extends Model
     protected $primaryKey = 'restoran_id';
 
     protected $fillable = [
-        'restoran_id',
         'naziv',
         'lokacija',
         'aktivan',
     ];
 
     protected $casts = [
-        'restoran_id' => 'integer',
         'naziv' => 'string',
         'adresa' => 'string',
         'kontakt' => 'string',
