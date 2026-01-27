@@ -66,14 +66,29 @@ class JeloController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Jelo $jelo)
+    public function update(Request $request, $id)
     {
+        $jelo = Jelo::find($id);
+        if (!$jelo) {
+            return response()->json(['message' => 'Jelo nije pronađeno'], 404);
+        }
+
         $validator = Validator::make($request->all(), [
             'naziv' => 'sometimes|required|string|max:50',
-            'opis' => 'sometimes|nullable|string',
+            'opis' => 'nullable|string',
             'cena' => 'sometimes|required|numeric|min:0',
             'restoran_id' => 'sometimes|required|exists:restorani,id',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Neuspešna validacija',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $jelo->update($validator->validated());
+        return response()->json($jelo, 200);
     }
 
     /**

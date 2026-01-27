@@ -11,6 +11,7 @@ class Porudzbina extends Model
     protected $table = 'porudzbine';
     protected $fillable = [
         'user_id',
+        'dostavljac_id',
         'vreme_kreiranja',
         'status',
         'ukupna_cena',

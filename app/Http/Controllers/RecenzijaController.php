@@ -29,21 +29,21 @@ class RecenzijaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|exists:users,id',
+            'restoran_id' => 'required|exists:restorani,restoran_id',
             'ocena' => 'required|integer|min:1|max:5',
             'komentar' => 'nullable|string|max:200',
-            'korisnik_id' => 'required|exists:korisnici,id',
-            'restoran_id' => 'required|exists:restorani,id',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json([
                 'message' => 'Neuspešna validacija',
                 'errors' => $validator->errors()
             ], 422);
         }
 
-        $recenzija = Recenzija::create($request->all());
+        $recenzija = Recenzija::create($validator->validated());
         return response()->json($recenzija, 201);
     }
 
@@ -52,7 +52,7 @@ class RecenzijaController extends Controller
      */
     public function show($id)
     {
-        return Recenzija::find($id);
+        return Recenzija::findOrFail($id);
     }
 
     /**
@@ -66,23 +66,26 @@ class RecenzijaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recenzija $recenzija)
+    public function update(Request $request, $id)
     {
-        $validator = Validator::make(request()->all(), [
+        $recenzija = Recenzija::find($id);
+        if (!$recenzija) {
+            return response()->json(['message' => 'Recenzija nije pronađena'], 404);
+        }
+
+        $validator = Validator::make($request->all(), [
             'ocena' => 'sometimes|required|integer|min:1|max:5',
             'komentar' => 'sometimes|nullable|string|max:200',
-            'korisnik_id' => 'sometimes|required|exists:korisnici,id',
-            'restoran_id' => 'sometimes|required|exists:restorani,id',
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json([
                 'message' => 'Neuspešna validacija',
                 'errors' => $validator->errors()
             ], 422);
         }
 
-        $recenzija->update($request->all());
+        $recenzija->update($validator->validated());
         return response()->json($recenzija, 200);
     }
 

@@ -65,23 +65,27 @@ class RestoranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Restoran $restoran)
+    public function update(Request $request,$id)
     {
+        $restoran = Restoran::find($id);
+        if (!$restoran) {
+            return response()->json(['message' => 'Restoran nije pronađen'], 404);
+        }
+
         $validator = Validator::make($request->all(), [
             'naziv' => 'sometimes|required|string|max:30',
             'lokacija' => 'sometimes|required|string|max:50',
             'aktivan' => 'sometimes|required|boolean',
         ]);
 
-        $validator -> fails(); {
+        if ($validator->fails()) {
             return response()->json([
                 'message' => 'Neuspešna validacija',
                 'errors' => $validator->errors()
             ], 422);
         }
 
-        $data = $validator->validated();
-        $restoran->update($data);
+        $restoran->update($validator->validated());
         return response()->json($restoran, 200);
     }
 

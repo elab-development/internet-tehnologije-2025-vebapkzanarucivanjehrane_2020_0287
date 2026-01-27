@@ -31,8 +31,7 @@ class DostavljacController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'ime' => 'required|string|max:30',
-            'prezime' => 'required|string|max:30',
-            'telefon' => 'required|string|max:15',
+            'kontakt' => 'required|string|max:15',
         ]);
 
         if ($validator->fails()) {
@@ -42,7 +41,7 @@ class DostavljacController extends Controller
             ], 422);
         }
 
-        $dostavljac = Dostavljac::create($request->all());
+        $dostavljac = Dostavljac::create($validator->validated());
         return response()->json($dostavljac, 201);
     }
 
@@ -51,7 +50,7 @@ class DostavljacController extends Controller
      */
     public function show($id)
     {
-        return Dostavljac::find($id);
+        return Dostavljac::findOrFail($id);
     }
 
     /**
@@ -65,12 +64,18 @@ class DostavljacController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dostavljac $dostavljac)
+    //ovo sluzi za 
+    public function update(Request $request,$id)
     {
+       
+        $dostavljac = Dostavljac::find($id);
+        if (!$dostavljac) {
+            return response()->json(['message' => 'Dostavljač nije pronađen'], 404);
+        }
+
         $validator = Validator::make($request->all(), [
             'ime' => 'sometimes|required|string|max:30',
-            'prezime' => 'sometimes|required|string|max:30',
-            'telefon' => 'sometimes|required|string|max:15',
+            'kontakt' => 'sometimes|required|string|max:15',
         ]);
 
         if ($validator->fails()) {
@@ -80,8 +85,8 @@ class DostavljacController extends Controller
             ], 422);
         }
 
-        $dostavljac->update($request->all());
-        return response()->json($dostavljac, 200);  
+        $dostavljac->update($validator->validated());
+        return response()->json($dostavljac, 200);
     }
 
     /**

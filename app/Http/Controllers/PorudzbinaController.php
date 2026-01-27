@@ -30,10 +30,12 @@ class PorudzbinaController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'datum' => 'required|date',
-            'ukupna_cena' => 'required|numeric|min:0',
-            'restoran_id' => 'required|exists:restorani,id',
-            'dostavljac_id' => 'required|exists:dostavljaci,id',
+            'user_id'         => 'required|exists:users,id', 
+        'dostavljac_id'   => 'nullable|exists:dostavljaci,id',
+        'vreme_kreiranja' => 'required|date',
+        'status'          => 'sometimes|in:na_cekanju,u_pripremi,dostava_u_toku,isporuceno,otkazano',
+        'ukupna_cena'     => 'required|numeric|min:0',
+        'adresa_isporuke' => 'required|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -52,7 +54,7 @@ class PorudzbinaController extends Controller
      */
     public function show($id)
     {
-        return Porudzbina::find($id);
+        return Porudzbina::findOrFail($id);
     }
 
     /**
@@ -66,13 +68,20 @@ class PorudzbinaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Porudzbina $porudzbina)
+    public function update(Request $request, $id)
     {
+        $porudzbina = Porudzbina::find($id);
+        if (!$porudzbina) {
+            return response()->json(['message' => 'Porudžbina nije pronađena'], 404);
+        }
+
         $validator = Validator::make($request->all(),[
-            'datum' => 'sometimes|required|date',
-            'ukupna_cena' => 'sometimes|required|numeric|min:0',
-            'restoran_id' => 'sometimes|required|exists:restorani,id',
-            'dostavljac_id' => 'sometimes|required|exists:dostavljaci,id',
+            'user_id'         => 'sometimes|exists:users,id', 
+        'dostavljac_id'   => 'nullable|exists:dostavljaci,id',
+        'vreme_kreiranja' => 'sometimes|date',
+        'status'          => 'sometimes|in:na_cekanju,u_pripremi,dostava_u_toku,isporuceno,otkazano',
+        'ukupna_cena'     => 'sometimes|numeric|min:0',
+        'adresa_isporuke' => 'sometimes|string|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -82,7 +91,7 @@ class PorudzbinaController extends Controller
             ], 422);
         }
 
-        $porudzbina->update($request->all());
+        $porudzbina->update($validator->validated());
         return response()->json($porudzbina, 200);
     }
 

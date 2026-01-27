@@ -4,6 +4,8 @@ use App\Http\Controllers\DostavljacController;
 use App\Http\Controllers\JeloController;
 use App\Http\Controllers\PorudzbinaController;
 use App\Http\Controllers\RestoranController;
+use App\Http\Controllers\StavkaPorudzbineController;
+use App\Http\Controllers\RecenzijaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

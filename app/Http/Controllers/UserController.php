@@ -30,7 +30,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:20',
+            'ime' => 'required|string|max:20',
+            'prezime' => 'required|string|max:20',
             'email' => 'required|string|email|max:100|unique:users,email',
             'password' => 'required|string|min:8',
         ]);
@@ -42,7 +43,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $user = User::create($request->all());
+        $user = User::create($validator->validated());
         return response()->json($user, 201);
     }
 
@@ -65,11 +66,17 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,$id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'sometimes|required|string|max:20',
-            'email' => 'sometimes|required|string|email|max:100|unique:users,email,' . $user->id,
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['message' => 'Korisnik nije pronađen'], 404);
+        }
+
+        $validator = Validator::make($request->all(),[
+            'ime' => 'sometimes|required|string|max:20',
+            'prezime' => 'sometimes|required|string|max:20',
+            'email' => 'sometimes|required|string|email|max:100|unique:users,email,'.$id,
             'password' => 'sometimes|required|string|min:8',
         ]);
 
@@ -80,7 +87,7 @@ class UserController extends Controller
             ], 422);
         }
 
-        $user->update($request->all());
+        $user->update($validator->validated());
         return response()->json($user, 200);
     }
 
