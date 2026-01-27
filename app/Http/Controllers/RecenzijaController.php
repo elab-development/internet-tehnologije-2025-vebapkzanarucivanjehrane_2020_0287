@@ -57,7 +57,7 @@ class RecenzijaController extends Controller
             return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
         }
 
-        
+
         $recenzija->update($validator->validated());
         return response()->json($recenzija, 200);
     }

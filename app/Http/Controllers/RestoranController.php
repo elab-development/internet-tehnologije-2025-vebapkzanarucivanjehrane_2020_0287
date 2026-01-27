@@ -35,7 +35,7 @@ class RestoranController extends Controller
         $validator = Validator::make($request->all(), [
             'naziv' => 'required|string|max:255',
             'adresa' => 'required|string|max:255',
-            'telefon' => 'required|string|max:20',
+            'aktivan' => 'required|boolean',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -80,7 +80,7 @@ class RestoranController extends Controller
         $validator = Validator::make($request->all(), [
             'naziv' => 'sometimes|required|string|max:255',
             'adresa' => 'sometimes|required|string|max:255',
-            'telefon' => 'sometimes|required|string|max:20',
+            'aktivan' => 'sometimes|required|boolean',
         ]);
 
         if ($validator->fails()) {
