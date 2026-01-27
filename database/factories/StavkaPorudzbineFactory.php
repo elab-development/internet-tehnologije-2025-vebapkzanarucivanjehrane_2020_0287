@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Porudzbina;
+use App\Models\Jelo;
+use App\Models\StavkaPorudzbine;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StavkaPorudzbine>
@@ -17,8 +20,8 @@ class StavkaPorudzbineFactory extends Factory
     public function definition(): array
     {
         return [
-            'porudzbina_id' => \App\Models\Porudzbina::factory(),
-            'jelo_id' => \App\Models\Jelo::factory(),
+            'porudzbina_id' => Porudzbina::factory(),
+            'jelo_id' => Jelo::factory(),
             'kolicina' => $this->faker->numberBetween(1, 5),
             'cena' => $this->faker->randomFloat(2, 100, 1000),
         ];

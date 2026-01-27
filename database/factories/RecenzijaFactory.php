@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\User;
+use App\Models\Restoran;
+use App\Models\Recenzija;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recenzija>
  */
@@ -17,8 +19,8 @@ class RecenzijaFactory extends Factory
     public function definition(): array
     {
         return [
-            'korisnik_id' => \App\Models\User::factory(),
-            'restoran_id' => \App\Models\Restoran::factory(),
+            'korisnik_id' => User::factory(),
+            'restoran_id' => Restoran::factory(),
             'ocena' => $this->faker->numberBetween(1, 5),
             'komentar' => $this->faker->sentence(),
         ];

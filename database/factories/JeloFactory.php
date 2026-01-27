@@ -3,6 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Restoran;
+use App\Models\Jelo;
+
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Jelo>
@@ -20,7 +24,7 @@ class JeloFactory extends Factory
             'naziv' => $this->faker->word(),
             'opis' => $this->faker->sentence(),
             'cena' => $this->faker->randomFloat(2, 5, 100),
-            'restoran_id' => \App\Models\Restoran::factory(),
+            'restoran_id' => Restoran::factory(),
         ];
     }
 }
