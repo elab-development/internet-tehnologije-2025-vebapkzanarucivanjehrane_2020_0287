@@ -19,6 +19,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;'); //ovo omogućava brisanje podataka iz tabela koje imaju spoljne ključeve
+
+        //ovo brise sve podatke iz tabela pre ponovnog seeding-a
+        //moze se koristiti php artisan migrate:fresh --seed, koji brise sve tabele i ponovo ih kreira sa seeding-om
+        
+        Jelo::truncate();
+        Porudzbina::truncate();
+        StavkaPorudzbine::truncate();
+        Recenzija::truncate();
+        Restoran::truncate();
+        Dostavljac::truncate();
+        User::truncate();
+
+        //ovo ponovo popunjava tabele sa podacima
         User::factory(5)->create();
         Dostavljac::factory(5)->create();
         Restoran::factory(5)->create();
