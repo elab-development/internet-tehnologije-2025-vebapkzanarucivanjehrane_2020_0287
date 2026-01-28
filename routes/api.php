@@ -8,6 +8,19 @@ use App\Http\Controllers\StavkaPorudzbineController;
 use App\Http\Controllers\RecenzijaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
+use App\Http\Controllers\AuthController;
+// Authentication routes
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+//ovo su rute koje zahtevaju autentifikaciju, da bi se pristupilo ovim rutama, korisnik mora imati token
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'user']);
+});
+
 
 
 Route::get('/restorani', [RestoranController::class, 'index']);
@@ -51,3 +64,4 @@ Route::get('/users/{id}', [App\Http\Controllers\UserController::class, 'show']);
 Route::post('/users', [App\Http\Controllers\UserController::class, 'store']);
 Route::put('/users/{id}', [App\Http\Controllers\UserController::class, 'update']);
 Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+
