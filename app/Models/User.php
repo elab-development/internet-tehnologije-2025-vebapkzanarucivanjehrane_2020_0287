@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'ime',
         'prezime',
+        'role',
         'email',
         'password',
     ];
@@ -56,4 +57,9 @@ class User extends Authenticatable
     public function recenzije() {
         return $this->hasMany(Recenzija::class);
     }
+    // korisnik moze biti dostavljac, dodata uloga  
+    public function dostavljac() {
+        return $this->hasOne(Dostavljac::class);
+    }
+
 }

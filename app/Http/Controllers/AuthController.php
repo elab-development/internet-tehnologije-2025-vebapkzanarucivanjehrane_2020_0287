@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Dostavljac;
 
 
 class AuthController extends Controller
@@ -17,8 +18,10 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'ime' => 'required|string|max:255',
             'prezime' => 'required|string|max:255',
+            'role' => 'required|in:kupac,dostavljac,admin', //dodata validacija za ulogu
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'kontakt' => 'nullable|string|max:255' //optionalno jer korisnik moze biti kupac koji nema kontakt polje
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -29,13 +32,23 @@ class AuthController extends Controller
         $user = User::create([
             'ime' => $data['ime'],
             'prezime' => $data['prezime'],
+            'role' => $data['role'],
             'email' => $data['email'],
             'password' =>$data['password'],
         ]);
+        if($data['role'] === 'dostavljac'){
+            //ako je uloga dostavljac, kreiramo i unos u tabeli dostavljaci
+            Dostavljac::create([
+                'user_id' => $user->id,
+                'ime' => $data['ime'],
+                'kontakt' => $data['kontakt'] ?? '', //ako nije prosledjen kontakt, stavlja se prazan string
+            ]);
+        }
 
         //token predstavlja nacin da se korisnik autentifikuje u API-ju
         //kao rezultat registracije, kreiramo token za korisnika
         $token = $user->createToken('api_token')->plainTextToken; //tekstualni token
+        
         return response()->json([
         'message' => 'User registered successfully',    
         'user' => $user,
@@ -67,6 +80,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'User logged in successfully',
             'user' => $user,
+            'role' => $user->role,
             'access_token' => $token,
         ], 200);    
     }
