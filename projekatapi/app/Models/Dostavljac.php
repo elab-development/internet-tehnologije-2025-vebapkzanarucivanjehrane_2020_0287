@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Porudzbina;
-use App\Models\User;
 
 class Dostavljac extends Model
 {
     use HasFactory;
     protected $table = 'dostavljaci';
     protected $fillable = [
-        'user_id',
         'ime',
         'kontakt',
     ];

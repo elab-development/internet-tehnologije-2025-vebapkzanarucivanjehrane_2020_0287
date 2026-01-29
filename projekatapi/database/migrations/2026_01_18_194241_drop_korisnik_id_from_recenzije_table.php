@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('recenzije', function (Blueprint $table) {
-             $table->dropForeign(['korisnik_id']);
+    Schema::table('recenzije', function (Blueprint $table) {
+        if (Schema::hasColumn('recenzije', 'korisnik_id')) {
+            $table->dropForeign(['korisnik_id']);
             $table->dropColumn('korisnik_id');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); //dodat jer je seeder pravljen sa user_id, protestovao je
-        });
-    }
+        }
+    });
+}
 
     /**
      * Reverse the migrations.
@@ -24,9 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('recenzije', function (Blueprint $table) {
-                $table->dropForeign(['user_id']);
-                $table->dropColumn('user_id');    
-        $table->unsignedBigInteger('korisnik_id')->after('id');
+            $table->unsignedBigInteger('korisnik_id')->after('id');
              $table->foreign('korisnik_id')->references('id')->on('users');
         });
     }

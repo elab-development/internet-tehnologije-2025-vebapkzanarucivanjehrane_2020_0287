@@ -4,13 +4,9 @@ import { Link } from "react-router-dom";
 const styles = {
   navbar: {
     position: "sticky",
-    top: 0,
     zIndex: 100,
-
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
-
     padding: "14px 32px",
 
     background: "rgba(255, 255, 255, 0.15)",
@@ -31,12 +27,12 @@ const styles = {
     fontSize: "22px",
     fontWeight: 900,
     letterSpacing: "1px",
-    color: "#ffffff",
+    color: "#d3e5d9",
     textDecoration: "none"
   },
 
   logoSpan: {
-    color: "#93c5fd"
+    color: "#265d34"
   },
 
   right: {
@@ -47,7 +43,7 @@ const styles = {
 
   link: {
     textDecoration: "none",
-    color: "#f1f5f9",
+    color: "#265d34",
     fontSize: "15px",
     fontWeight: 500,
     padding: "6px 14px",

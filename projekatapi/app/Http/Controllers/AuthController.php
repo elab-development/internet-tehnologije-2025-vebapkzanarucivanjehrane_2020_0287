@@ -34,7 +34,7 @@ class AuthController extends Controller
             'prezime' => $data['prezime'],
             'role' => $data['role'],
             'email' => $data['email'],
-            'password' =>$data['password'],
+            'password' => Hash::make($data['password']),
         ]);
         if($data['role'] === 'dostavljac'){
             //ako je uloga dostavljac, kreiramo i unos u tabeli dostavljaci
@@ -50,7 +50,7 @@ class AuthController extends Controller
         $token = $user->createToken('api_token')->plainTextToken; //tekstualni token
         
         return response()->json([
-        'message' => 'User registered successfully',    
+        'message' => 'Korisnik je uspešno registrovan',    
         'user' => $user,
         'access_token' => $token,
         ], 201);
@@ -64,21 +64,22 @@ class AuthController extends Controller
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'message' => 'Validation failed',
+                'message' => 'Neuspešna validacija',
                 'errors' => $validator->errors()], 422);
         }
 
         //ako validator ne fail-uje, ovo proverava da li su kredencijali ispravni
         //proverava da li postoji korisnik sa datim email-om i password-om
         if(!Auth::attempt($validator->validated())){
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json(['message' => 'Pogrešni kredencijali'], 401);
         }
         
 
+        /** @var \App\Models\User $user */
         $user = Auth::user();   
         $token = $user->createToken('api_token')->plainTextToken;
         return response()->json([
-            'message' => 'User logged in successfully',
+            'message' => 'Korisnik je uspešno prijavljen',
             'user' => $user,
             'role' => $user->role,
             'access_token' => $token,
@@ -88,7 +89,7 @@ class AuthController extends Controller
 //korisnik je vec prijavljen i ima validan token, tako da se token samo brise
     public function logout(Request $request){
         $request->user()->currentAccessToken()->delete();
-        return response()->json(['message' => 'User logged out successfully'], 200);
+        return response()->json(['message' => 'Korisnik je uspešno odjavljen'], 200);
     }
 
     //metoda za dobijanje informacija o trenutno prijavljenom korisniku 

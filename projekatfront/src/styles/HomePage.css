@@ -1,0 +1,255 @@
+.homepage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #FBF7F2, #F6EFE6);
+  color: #265d34;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.homepage-main {
+  margin: 0;
+  padding: 80px 200px;
+  display: flex;
+  justify-content: space-between;
+  gap:100px;
+
+}
+
+.homepage {
+  min-height: 100vh;
+  position: relative;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.75),
+      rgba(255, 255, 255, 0.75)
+    ),
+    url("../assets/scooterimg.png");
+
+  background-size: cover;
+  background-position: center;
+}
+
+/* leva strana*/
+.homepage-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homepage-title {
+  font-size: 44px;
+  font-weight: 900;
+  color: #265d34;
+  margin-bottom: 20px;
+}
+
+.homepage-subtitle {
+  font-size: 18px;
+  color: #6C7A6B;
+  margin-bottom: 32px;
+}
+
+/*dugme prijavi se*/
+.btn-primary {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #6B8E23, #94bc44);
+  color:  #FFFFFF;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(107, 142, 35, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(107, 142, 35, 0.45);
+}
+
+/* desna strana */
+.homepage-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+/*sekcija naslov i tekst ispod*/
+.homepage-section {
+  width: 100%;
+  text-align: center; 
+}
+
+/*Naslov sta nudi FoodEXPRESS?*/
+.homepage-section h2 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #265d34;
+  margin-bottom: 8px;
+}
+
+.homepage-section-subtitle {
+  font-size: 15px;
+  color: #6C7A6B;
+  max-width: 520px;
+  margin: 0 auto;
+
+}
+
+/* grid sa karticama */
+.homepage-grid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 20px;
+}
+
+.homepage-whyus {
+  width: 100%;
+}
+
+/*grid za whyus kartice*/
+.homepage-grid-whyus {
+   display: grid;
+  grid-template-columns: repeat(3, 200px); /* 👈 TRI JEDNAKE KARTICE */
+  gap: 20px;
+}
+
+/* naslov Zasto bas mi? */
+.homepage-grid-whyus h3 {
+  font-size: 22px;
+  color:  #4F5D2F;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+/* kartice */
+.featureCard {
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid #E3E8D9;
+  box-shadow: 0 8px 24px rgba(47, 62, 46, 0.25);
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.featureCard:hover {
+  transform: scale(1.05);
+  box-shadow:  0 18px 42px rgba(70, 93, 68, 0.25);
+}
+
+.featureCard h3 {
+  font-size: 15px;
+  color: #4F5D2F;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.featureCard svg {
+  font-size: 20px;
+  color:#6B8E23;
+}
+
+.featureCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureCard li {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+/* sekcija i grid za partnere */
+.homepage-grid-partner {
+  max-width: 900px;
+  margin: 60px auto 80px;
+  padding: 0 32px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.homepage-grid-partner h3 {
+  width: 100%;
+  grid-column: 1 / -1;
+  font-size: 30px;
+  color:  #4F5D2F;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* kartice za partnere */
+.homepage-grid-partner .featureCard {
+  aspect-ratio: auto;
+  min-height: 220px;
+
+  background:linear-gradient(135deg, #8db78a, #FBF7F2);
+  border: 1px solid #9aab99;
+  border-radius: 22px;
+
+  padding: 28px;
+
+  box-shadow: 0 12px 30px rgba(107, 142, 35, 0.25);
+}
+
+.homepage-grid-partner .featureCard:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 25px 55px rgba(139, 150, 142, 0.35);
+}
+
+.homepage-grid-partner .featureCard h3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25px;
+  color: #10421d;
+}
+
+.homepage-grid-partner .featureCard li {
+  font-size: 15px;
+  color: #193212;
+}
+
+/* responzivnost */
+@media (max-width: 1024px) {
+  .homepage-main {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-grid,
+  .homepage-grid-whyus {
+    grid-template-columns: repeat(2, 200px);
+  }
+}
+
+@media (max-width: 640px) {
+  .homepage-grid,
+  .homepage-grid-whyus {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-grid-partner {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-title {
+    font-size: 34px;
+  }
+}

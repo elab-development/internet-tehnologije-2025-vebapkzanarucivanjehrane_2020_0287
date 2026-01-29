@@ -33,7 +33,6 @@ class StavkaPorudzbineController extends Controller
             'kolicina' => 'required|integer|min:1',
             'jelo_id' => 'required|exists:jela,id',
             'porudzbina_id' => 'required|exists:porudzbine,id',
-            'cena' => $jelo->cena * $request->kolicina,
         ]);
 
         if ($validator->fails()) {
@@ -66,17 +65,12 @@ class StavkaPorudzbineController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, StavkaPorudzbine $stavkaPorudzbine)
     {
-        $stavkaPorudzbine = StavkaPorudzbine::find($id);
-        if (!$stavkaPorudzbine) {
-            return response()->json(['message' => 'Stavka porudžbine nije pronađena'], 404);
-        }
-
-        $validator = Validator::make($request->all(),[
-            'kolicina' => 'sometimes|required|integer|min:1',
-            'jelo_id' => 'sometimes|required|exists:jela,id',
-            'porudzbina_id' => 'sometimes|required|exists:porudzbine,id',
+         $validator = Validator::make($request->all(),[
+            'kolicina' => 'required|integer|min:1',
+            'jelo_id' => 'required|exists:jela,id',
+            'porudzbina_id' => 'required|exists:porudzbine,id',
         ]);
 
         if ($validator->fails()) {
@@ -85,8 +79,8 @@ class StavkaPorudzbineController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-
-        $stavkaPorudzbine->update($validator->validated());
+        $data = $validator->validated();
+        $stavkaPorudzbine->update($data);
         return response()->json($stavkaPorudzbine, 200);
     }
 

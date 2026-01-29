@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jelo;
+use App\Models\Restoran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class JeloController extends Controller
+class RestoranController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Jelo::all();
+        return Restoran::all();
     }
 
     /**
@@ -30,54 +30,9 @@ class JeloController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'naziv' => 'required|string|max:50',
-            'opis' => 'nullable|string',
-            'cena' => 'required|numeric|min:0',
-            'restoran_id' => 'required|exists:restorani,id',
-        ]); 
-
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Neuspešna validacija',
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
-        $jelo = Jelo::create($request->all());
-        return response()->json($jelo, 201);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        return Jelo::find($id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Jelo $jelo)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        $jelo = Jelo::find($id);
-        if (!$jelo) {
-            return response()->json(['message' => 'Jelo nije pronađeno'], 404);
-        }
-
-        $validator = Validator::make($request->all(), [
-            'naziv' => 'sometimes|required|string|max:50',
-            'opis' => 'nullable|string',
-            'cena' => 'sometimes|required|numeric|min:0',
-            'restoran_id' => 'sometimes|required|exists:restorani,id',
+            'naziv' => 'required|string|max:30',
+            'lokacija' => 'required|string|max:50',
+            'aktivan' => 'required|boolean',
         ]);
 
         if ($validator->fails()) {
@@ -87,8 +42,51 @@ class JeloController extends Controller
             ], 422);
         }
 
-        $jelo->update($validator->validated());
-        return response()->json($jelo, 200);
+        $restoran = Restoran::create($request->all());
+        return response()->json($restoran, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        return Restoran::find($id);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Restoran $restoran)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request,$id)
+    {
+        $restoran = Restoran::find($id);
+        if (!$restoran) {
+            return response()->json(['message' => 'Restoran nije pronađen'], 404);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'naziv' => 'sometimes|required|string|max:30',
+            'lokacija' => 'sometimes|required|string|max:50',
+            'aktivan' => 'sometimes|required|boolean',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Neuspešna validacija',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $restoran->update($validator->validated());
+        return response()->json($restoran, 200);
     }
 
     /**
@@ -96,12 +94,12 @@ class JeloController extends Controller
      */
     public function destroy($id)
     {
-        $jelo = Jelo::find($id);
-        if (!$jelo) {
-            return response()->json(['message' => 'Jelo nije pronađeno'], 404);
-        }
-        
-        $jelo->delete();
-        return response()->json(['message' => 'Jelo je uspešno obrisano'], 200);
+       $restoran = Restoran::find($id);
+         if(!$restoran){
+            return response()->json(['message' => 'Restoran nije pronađen'], 404);
+         }
+
+        $restoran->delete();
+        return response()->json(['message' => 'Restoran je uspešno obrisan'], 200);
     }
 }

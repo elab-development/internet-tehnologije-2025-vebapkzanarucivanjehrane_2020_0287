@@ -2,7 +2,7 @@ import React from 'react'
 
 const FeatureCard = ({Icon,title, items}) => {
   return (
-    <div className="card">
+    <div className="featureCard">
       <h3>{Icon}{title}</h3>
       <ul>
         {items.map((item, index) => (
