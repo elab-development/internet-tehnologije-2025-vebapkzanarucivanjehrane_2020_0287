@@ -50,7 +50,7 @@ class AuthController extends Controller
         $token = $user->createToken('api_token')->plainTextToken; //tekstualni token
         
         return response()->json([
-        'message' => 'Korisnik je uspešno registrovan',    
+        'message' => 'Uspešna registracija korisnika.',    
         'user' => $user,
         'access_token' => $token,
         ], 201);
@@ -64,7 +64,7 @@ class AuthController extends Controller
         ]);
         if ($validator->fails()) {
             return response()->json([
-                'message' => 'Neuspešna validacija',
+                'message' => 'Neuspešna validacija podataka.',
                 'errors' => $validator->errors()], 422);
         }
 
@@ -79,7 +79,7 @@ class AuthController extends Controller
         $user = Auth::user();   
         $token = $user->createToken('api_token')->plainTextToken;
         return response()->json([
-            'message' => 'Korisnik je uspešno prijavljen',
+            'message' => 'Uspešno ste prijavljeni.',
             'user' => $user,
             'role' => $user->role,
             'access_token' => $token,

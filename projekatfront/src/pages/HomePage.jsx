@@ -2,6 +2,7 @@ import React from "react";
 import FeatureCard from "../components/FeatureCard";
 import { FaBolt, FaCreditCard, FaRegClock, FaShoppingCart, FaStore, FaUtensils} from 'react-icons/fa';
 import "../styles/HomePage.css";
+import { Link } from "react-router-dom";
 const HomePage = () => {
 
   const features = [
@@ -92,19 +93,21 @@ const HomePage = () => {
     <div className="homepage">
       <div className="homepage-main">
         <div className="homepage-left">
-          <h1 className="homepage-title">FoodEXPRESS - Tvoja omiljena hrana, dostavljena brzo i sigurno</h1>
+          <h1 className="homepage-title">NomNomGo - Tvoja omiljena hrana, dostavljena brzo i sigurno</h1>
           <p className="homepage-subtitle">
             Poruči iz najboljih restorana u svom gradu - bez čekanja, bez gužve, samo nekoliko klikova.
           </p>
 
           <div className="homepage-hero-actions">
-            <button className = "btn-primary">Prijavi se</button>
+            <button className = "btn-primary">
+              Prijavi se <Link to="/login"></Link>
+              </button>
           </div>
         </div>
 
         <div className="homepage-right">
             <section className="homepage-section">
-              <h2>Šta nudi FoodEXPRESS?</h2>
+              <h2>Šta nudi NomNomGo?</h2>
                 <p className="homepage-section-subtitle">
                     Brza, sigurna i pouzdana dostava hrane iz tvojih omiljenih restorana, direktno na tvoja vrata.
                 </p>

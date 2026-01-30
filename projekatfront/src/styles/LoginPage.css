@@ -1,0 +1,158 @@
+.auth-page {
+  position: relative;
+  min-height: 80vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+/*blurovana pozadina*/
+.auth-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/foodimmg.png");
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+  transform: scale(1.05); 
+  z-index: 1;
+}
+
+/*svetliji overlay preko slike*/
+.auth-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(179, 179, 175, 0.75);
+  z-index: 2;
+}
+
+/* forma */
+.auth-card {
+  position: relative;
+  z-index: 3;
+
+  background-color: #E6EAD8;
+  max-width: 420px;
+  padding: 40px 35px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeInUp 0.6s ease;
+}
+
+/* naslov i podnaslov*/
+.auth-title {
+  color:   #265d34;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: #9c9f6e;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/**/
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/*input polja*/
+.auth-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #606224;
+  margin-bottom: 6px;
+}
+
+.auth-field input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d8dec7;
+  transition: all 0.2s ease;
+}
+
+.auth-field input:focus {
+  outline: none;
+  border-color: #7b8f3c;
+  box-shadow: 0 0 0 2px rgba(123, 143, 60, 0.15);
+}
+
+/*dugme za prijavu */
+.auth-button {
+  align-self: center;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.auth-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* info i error alert*/
+.auth-alert-info {
+  background-color: #4ca557;
+  color: #eee6e6;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.auth-alert-error {
+  background-color: #a86862;
+  color: #eee6e6;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  text-align: center;
+}
+
+/*poruka i link za registraciju*/
+.auth-extra {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #044b04;
+}
+
+.auth-extra a {
+  color: #12540b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-extra a:hover {
+  text-decoration: underline;
+}
+
+/* animacije */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

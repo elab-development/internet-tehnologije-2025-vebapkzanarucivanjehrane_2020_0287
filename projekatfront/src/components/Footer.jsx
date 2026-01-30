@@ -15,7 +15,7 @@ const Footer = () => {
    return (
     <footer style={footerStyle}>
       <span style={textStyle}>
-        © {new Date().getFullYear()} FoodEXPRESS dostava hrane
+        © {new Date().getFullYear()} NomNomGo dostava hrane
       </span>
     </footer>
   );

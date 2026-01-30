@@ -57,7 +57,7 @@ const Navbar = () => {
     <nav style={styles.navbar}>
       <div style={styles.left}>
         <Link to="/" style={styles.logo}>
-          Food<span style={styles.logoSpan}>EXPRESS</span>
+          NomNom<span style={styles.logoSpan}>GO</span>
         </Link>
       </div>
 
