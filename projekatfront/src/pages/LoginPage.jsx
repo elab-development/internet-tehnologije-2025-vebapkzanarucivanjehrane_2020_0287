@@ -16,7 +16,7 @@ const LoginPage = () => {
   const [info, setInfo] = useState("");
 
 
-  //login logika je u ovoj funkciji
+  //login logika je u ovoj funkciji, poziva se kada se forma submituje
       const handleSubmit = async(e) => {
           e.preventDefault(); //sprecava refresh stranice prilikom submitovanja forme 
           setLoading (true);
@@ -76,6 +76,7 @@ const LoginPage = () => {
               placeholder = "Unesite lozinku"
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
+              showPasswordToggle = {true}
               required 
             />
           </div>
