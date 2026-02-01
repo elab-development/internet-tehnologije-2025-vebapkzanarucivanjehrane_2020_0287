@@ -49,12 +49,17 @@
   margin-bottom: 32px;
 }
 
+.homepage-hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
 /*dugme prijavi se*/
 .btn-primary {
-  align-self: flex-start;
-  background: linear-gradient(135deg, #6B8E23, #94bc44);
+  background:rgba(54, 121, 49, 0.25);
   color:  #FFFFFF;
-  padding: 14px 30px;
+  padding: 14px 28px;
   font-size: 16px;
   font-weight: 700;
   border-radius: 14px;
@@ -68,6 +73,27 @@
   transform: translateY(-2px);
   box-shadow: 0 14px 36px rgba(107, 142, 35, 0.45);
 }
+
+/*dugme kreiraj nalog*/
+.btn-secondary{
+  align-self: flex-start;
+  background: linear-gradient(135deg, #6B8E23, #94bc44);
+  color:  #FFFFFF;
+  padding: 14px 17px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(107, 142, 35, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(107, 142, 35, 0.45);
+}
+
 
 /* desna strana */
 .homepage-right {

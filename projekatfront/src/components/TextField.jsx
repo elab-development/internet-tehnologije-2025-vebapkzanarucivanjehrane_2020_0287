@@ -15,7 +15,7 @@ const TextField = ({
 
     //postavljamo da sifra moze biti sakrivena/otkrivena
     const[showPassword, setShowPassword] = useState(false);
-    const isPassword = type == "password";
+    const isPassword = type === "password";
 
     const inputType = isPassword && showPasswordToggle ? (showPassword ? "text" : "password") : type; //da li je polje text/password
 

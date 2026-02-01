@@ -3,8 +3,9 @@ import FeatureCard from "../components/FeatureCard";
 import { FaBolt, FaCreditCard, FaRegClock, FaShoppingCart, FaStore, FaUtensils} from 'react-icons/fa';
 import "../styles/HomePage.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 const HomePage = () => {
-
+const navigate = useNavigate();
   const features = [
     {
       id: '1',
@@ -99,9 +100,15 @@ const HomePage = () => {
           </p>
 
           <div className="homepage-hero-actions">
-            <button className = "btn-primary">
-              Prijavi se <Link to="/login"></Link>
+            <button className = "btn-secondary"
+              onClick={() => navigate("/register")}>
+                  Kreiraj nalog
               </button>
+
+              <button className = "btn-primary"
+                onClick={() => navigate("/login")}>
+                  Prijavi se
+            </button>
           </div>
         </div>
 
