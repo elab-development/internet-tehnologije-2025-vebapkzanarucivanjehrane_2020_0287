@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jelo;
 use App\Models\Porudzbina;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PorudzbinaController extends Controller
@@ -29,14 +32,12 @@ class PorudzbinaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'user_id'         => 'required|exists:users,id', 
-        'dostavljac_id'   => 'nullable|exists:dostavljaci,id',
-        'vreme_kreiranja' => 'required|date',
-        'status'          => 'sometimes|in:na_cekanju,u_pripremi,dostava_u_toku,isporuceno,otkazano',
-        'ukupna_cena'     => 'required|numeric|min:0',
-        'adresa_isporuke' => 'required|string|max:255',
+        $validator = Validator::make($request->all(), [
+            'adresa_isporuke' => 'required|string|max:255',
+            'proizvodi' => 'required|array|min:1',
+            'proizvodi.*.id' => 'required|exists:jela,id'
         ]);
+
 
         if ($validator->fails()) {
             return response()->json([
@@ -45,9 +46,59 @@ class PorudzbinaController extends Controller
             ], 422);
         }
 
-        $porudzbina = Porudzbina::create($request->all());
-        return response()->json($porudzbina, 201);
+        DB::beginTransaction();
+
+        try {
+            $ids = collect($request->proizvodi)->pluck('id');
+
+            $kolicine = $ids->countBy();
+
+            $jela = Jelo::whereIn('id', $kolicine->keys())->get();
+
+            $ukupnaCena = 0;
+
+            $porudzbina = Porudzbina::create([
+                'user_id' => Auth::id(),
+                'status' => 'na_cekanju',
+                'vreme_kreiranja' => now(),
+                'ukupna_cena' => 0, 
+                'adresa_isporuke' => $request->adresa_isporuke
+            ]);
+
+            foreach ($jela as $jelo) {
+                $kolicina = $kolicine[$jelo->id];
+                $stavkaCena = $jelo->cena * $kolicina;
+
+                $ukupnaCena += $stavkaCena;
+
+                $porudzbina->stavkePorudzbine()->create([
+                    'jelo_id' => $jelo->id,
+                    'kolicina' => $kolicina,
+                    'cena' => $jelo->cena
+                ]);
+            }
+
+            $porudzbina->update([
+                'ukupna_cena' => $ukupnaCena
+            ]);
+
+            DB::commit();
+
+            return response()->json(
+                $porudzbina->load('stavkePorudzbine'),
+                201
+            );
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'message' => 'Greška pri kreiranju porudžbine',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
+
 
     /**
      * Display the specified resource.

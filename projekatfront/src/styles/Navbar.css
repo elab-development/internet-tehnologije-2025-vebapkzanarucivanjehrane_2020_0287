@@ -1,0 +1,105 @@
+/* Glavni wrapper */
+.navbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 32px;
+  background-color: #ffffff;
+
+  border-bottom: 1px solid #ececec;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Leva strana – logo */
+.navbar-container > div:first-child {
+  display: flex;
+  align-items: center;
+}
+
+/* Desna strana – linkovi */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Linkovi */
+.navbar a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.navbar a:hover {
+  color: #ff5a1f;
+}
+
+/* Hover underline efekat */
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #ff5a1f;
+  transition: width 0.25s ease;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* Logout dugme */
+.logout-button {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #ff5a1f, #ff7a45);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logout-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(255, 90, 31, 0.35);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ff5a1f;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #111;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 12px 20px;
+  }
+
+  .navbar {
+    gap: 14px;
+  }
+
+  .navbar a {
+    font-size: 14px;
+  }
+}

@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
     Route::post('/restorani/{id}/recenzije', [RecenzijaController::class, 'store']);
-    
+    Route::post('/porudzbine', [PorudzbinaController::class, 'store']);
 });
 
 //ruta za otvaranje Menu-a na stranici RestaurantDetails
@@ -47,7 +47,6 @@ Route::delete('/jela/{id}', [JeloController::class, 'destroy']);
 
 Route::get('/porudzbine', [PorudzbinaController::class, 'index']);
 Route::get('/porudzbine/{id}', [PorudzbinaController::class, 'show']);
-Route::post('/porudzbine', [PorudzbinaController::class, 'store']);
 Route::put('/porudzbine/{id}', [PorudzbinaController::class, 'update']);
 Route::delete('/porudzbine/{id}', [PorudzbinaController::class, 'destroy']);
 
