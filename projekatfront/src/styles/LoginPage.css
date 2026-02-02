@@ -58,8 +58,7 @@ select {
 .auth-card {
   position: relative;
   z-index: 3;
-
-  background-color: #E6EAD8;
+  background-color: #f4f6ec;
   max-width: 360px;
   padding: 28px 26px;
   border-radius: 20px;
@@ -69,14 +68,14 @@ select {
 
 /* naslov i podnaslov*/
 .auth-title {
-  color:   #265d34;
+  color:  #452517;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .auth-subtitle {
   font-size: 14px;
-  color: #9c9f6e;
+  color: #452517;
   margin-bottom: 30px;
   line-height: 1.6;
 }
@@ -98,7 +97,7 @@ select {
 .auth-field label {
   font-size: 13px;
   font-weight: 600;
-  color: #606224;
+  color: #452517;
   margin-bottom: 6px;
 }
 
@@ -112,8 +111,8 @@ select {
 
 .auth-field input:focus {
   outline: none;
-  border-color: #7b8f3c;
-  box-shadow: 0 0 0 2px rgba(123, 143, 60, 0.15);
+  border-color: #ea924f;
+  box-shadow: 0 0 0 2px rgba(143, 113, 60, 0.15);
 }
 
 /*dugme za prijavu */
@@ -134,7 +133,7 @@ select {
 
 /* info i error alert*/
 .auth-alert-info {
-  background-color: #4ca557;
+  background-color: #91eb9a;
   color: #eee6e6;
   padding: 10px 12px;
   border-radius: 10px;
@@ -143,7 +142,7 @@ select {
 }
 
 .auth-alert-error {
-  background-color: #a86862;
+  background-color: #e06358;
   color: #eee6e6;
   padding: 10px 12px;
   border-radius: 10px;
@@ -156,11 +155,11 @@ select {
   margin-top: 15px;
   text-align: center;
   font-size: 13px;
-  color: #044b04;
+  color:#452517;
 }
 
 .auth-extra a {
-  color: #12540b;
+  color: #e06358;
   font-weight: 600;
   text-decoration: none;
 }
@@ -187,17 +186,10 @@ select {
   padding: 8px 14px;
   border: none;
   border-radius: 8px;
-  background: #7b8f3c;
-  color: #fff;
+  background: #e06358;
+  color: #e06358;
   font-weight: 600;
   cursor: pointer;
-}
-
-/* hint tekst */
-.auth-hint {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #8a8f5c;
 }
 
 .auth-input-wrapper {
@@ -217,6 +209,6 @@ select {
   background: transparent;
   border: none;
   font-size: 12px;
-  color: #606224;
+  color: #452517;
   cursor: pointer;
 }

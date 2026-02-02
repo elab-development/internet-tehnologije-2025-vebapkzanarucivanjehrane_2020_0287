@@ -5,36 +5,40 @@ body {
   font-family: 'DM Sans', sans-serif;
 }
 
-/* naslovi */
-h1, h2, h3,
-.auth-title,
 .homepage-title {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
-button,
-input,
-textarea,
-select {
-  font-family: inherit;
+.homepage {
+  position: relative;
+  overflow: hidden;
 }
 
-.homepage {
-  min-height: 100vh;
+.homepage > * {
   position: relative;
+  z-index: 3;
+}
 
-  color: #265d34;
-
-  background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.75),
-      rgba(255, 255, 255, 0.75)
-    ),
-    url("../assets/scooterimg.png");
-
+.homepage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/foodimmg.png");
   background-size: cover;
   background-position: center;
+  filter: blur(6px);
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+/* svetliji overlay preko slike */
+.homepage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(224, 224, 218, 0.75);
+  z-index: 2;
 }
 
 .homepage-main {
@@ -55,13 +59,14 @@ select {
 .homepage-title {
   font-size: 44px;
   font-weight: 900;
-  color: #265d34;
+  color: #452517;
   margin-bottom: 20px;
 }
 
 .homepage-subtitle {
   font-size: 18px;
-  color: #6C7A6B;
+  color: #452517;
+  line-height: 1.6;
   margin-bottom: 32px;
 }
 
@@ -73,16 +78,18 @@ select {
 
 /*dugme prijavi se*/
 .btn-primary {
-  background:rgba(54, 121, 49, 0.25);
-  color:  #FFFFFF;
+  background: transparent;
+  color: #ff6a00;
+  border: 2px solid #ff6a00;
   padding: 14px 28px;
   font-size: 16px;
   font-weight: 700;
   border-radius: 14px;
-  border: none;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(107, 142, 35, 0.35);
+  box-shadow: 0 10px 30px rgba(238, 163, 136, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-family: inherit;
+
 }
 
 .btn-primary:hover {
@@ -93,7 +100,7 @@ select {
 /*dugme kreiraj nalog*/
 .btn-secondary{
   align-self: flex-start;
-  background: linear-gradient(135deg, #6B8E23, #94bc44);
+  background: linear-gradient(135deg, #e98a47, #ff8533);
   color:  #FFFFFF;
   padding: 14px 17px;
   font-size: 16px;
@@ -103,11 +110,14 @@ select {
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(107, 142, 35, 0.35);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-family: inherit;
 }
 
 .btn-secondary:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 36px rgba(107, 142, 35, 0.45);
+  background-color: #ff6a00;
+  color: #ffffff;
 }
 
 
@@ -129,13 +139,13 @@ select {
 .homepage-section h2 {
   font-size: 30px;
   font-weight: 800;
-  color: #265d34;
+  color: #452517;
   margin-bottom: 8px;
 }
 
 .homepage-section-subtitle {
   font-size: 15px;
-  color: #6C7A6B;
+  color: #452517;
   max-width: 520px;
   margin: 0 auto;
 
@@ -155,15 +165,15 @@ select {
 
 /*grid za whyus kartice*/
 .homepage-grid-whyus {
-   display: grid;
-  grid-template-columns: repeat(3, 200px); /* 👈 TRI JEDNAKE KARTICE */
+  display: grid;
+  grid-template-columns: repeat(3, 200px); 
   gap: 20px;
 }
 
 /* naslov Zasto bas mi? */
 .homepage-grid-whyus h3 {
   font-size: 22px;
-  color:  #4F5D2F;
+  color: #452517;
   margin-bottom: 16px;
   text-align: left;
 }
@@ -173,7 +183,7 @@ select {
   background: #FFFFFF;
   border-radius: 18px;
   padding: 16px;
-  border: 1px solid #E3E8D9;
+  border: none;
   box-shadow: 0 8px 24px rgba(47, 62, 46, 0.25);
   aspect-ratio: 1 / 1;
 
@@ -191,7 +201,7 @@ select {
 
 .featureCard h3 {
   font-size: 15px;
-  color: #4F5D2F;
+  color: #000000;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -201,7 +211,7 @@ select {
 
 .featureCard svg {
   font-size: 20px;
-  color:#6B8E23;
+  color:#452517;
 }
 
 .featureCard ul {
@@ -212,7 +222,7 @@ select {
 
 .featureCard li {
   font-size: 13px;
-  color: #475569;
+  color: #635952;
   margin-bottom: 6px;
   text-align: center;
 }
@@ -232,7 +242,7 @@ select {
   width: 100%;
   grid-column: 1 / -1;
   font-size: 30px;
-  color:  #4F5D2F;
+  color:#452517;
   margin-bottom: 10px;
   text-align: center;
 }
@@ -242,8 +252,8 @@ select {
   aspect-ratio: auto;
   min-height: 220px;
 
-  background:linear-gradient(135deg, #8db78a, #FBF7F2);
-  border: 1px solid #9aab99;
+  background: linear-gradient(135deg, #ffd9c0, #fbb07f);
+  border: 1px solid #ffd2b8;
   border-radius: 22px;
 
   padding: 28px;
@@ -253,7 +263,7 @@ select {
 
 .homepage-grid-partner .featureCard:hover {
   transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 25px 55px rgba(139, 150, 142, 0.35);
+  box-shadow: 0 25px 55px rgba(255, 106, 0, 0.28);
 }
 
 .homepage-grid-partner .featureCard h3 {
@@ -261,12 +271,12 @@ select {
   flex-direction: column;
   align-items: center;
   font-size: 25px;
-  color: #10421d;
+  color: #452517;
 }
 
 .homepage-grid-partner .featureCard li {
   font-size: 15px;
-  color: #193212;
+  color: #452517;
 }
 
 /* responzivnost */

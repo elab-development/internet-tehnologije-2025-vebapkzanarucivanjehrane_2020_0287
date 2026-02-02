@@ -1,11 +1,14 @@
 import { useState } from "react";
 import api from "../api/api";
 import "../styles/FloatingCart.css";
-import { IoClose, IoTrashOutline } from "react-icons/io5";
+import { IoClose, IoTrashOutline,IoCartOutline} from "react-icons/io5";
 
 const FloatingCart = ({ korpa, setKorpa }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [orderError, setOrderError] = useState(false);
+  
   function handleRemove(index) {
     setKorpa(prev =>
       prev.filter((_, i) => i !== index)
@@ -23,22 +26,25 @@ const FloatingCart = ({ korpa, setKorpa }) => {
         adresa_isporuke: adresa,
         proizvodi: korpa
     }).then((res) => {
-        console.log('uspesna porudzbina')
-        console.log(res.data)
-        setIsModalOpen(false)
-        alert('Uspesno kreirana porudzbina')
+        setOrderSuccess(true);
+        setOrderError(false);      
+        setKorpa([]);               
     }).catch((error) => {
         console.log(error)
+        setOrderError(true);
+        setOrderSuccess(false);
     })
   }
-
  
   const ukupno = korpa.reduce((sum, jelo) => sum + Number(jelo.cena), 0);
 
   return (
     <>
     <div className="floating-cart">
-      <h4>Korpa</h4>
+        <h4 className="cart-title">
+          <IoCartOutline className="cart-icon" />
+          Korpa
+        </h4>
 
       {korpa.length === 0 ? (
         <p className="empty-cart">Korpa je prazna</p>
@@ -61,45 +67,86 @@ const FloatingCart = ({ korpa, setKorpa }) => {
           </div>
         </>
       )}
-      <button id="poruciButton" onClick={handlePoruciClick}>PORUCI</button>
+      <button id="poruciButton" onClick={handlePoruciClick}>PORUČI</button>
     </div>
 
     {isModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <div
-            className="order-modal"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="close-btn"
-              onClick={() => setIsModalOpen(false)}
-            >
-              <IoClose />
+        <div className="modal-overlay" onClick={() => {
+            setIsModalOpen(false);
+            setOrderSuccess(false);
+          }}
+        >
+         <div className="order-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => {
+                setIsModalOpen(false);
+                setOrderSuccess(false);
+              }}>
+                <IoClose />
             </button>
 
-            <h3>Potvrda porudžbine</h3>
+       {orderSuccess ? (
+           <>
+          <h3>Uspešno kreirana porudžbina</h3>
+            <p className="success-text">
+                Hvala vam! Vaša porudžbina je uspešno poslata.
+            </p>
 
-            <label>Adresa isporuke</label>
-            <input
-              id="adresaInput"
-              type="text"
-              placeholder="Unesite adresu..."
-            />
+              <button className="confirm-btn" onClick={() => {
+                  setIsModalOpen(false);
+                  setOrderSuccess(false);
+                  setOrderError(false);
+                  }}>
+                      Zatvori
+                </button>
+              </>
+            ) : orderError ? (
+              <>
+          <h3> Greška</h3>
+            <p className="error-text">
+              Došlo je do greške prilikom kreiranja porudžbine.
+            </p>
 
-            <div className="modal-total">
-              Ukupno: <strong>{ukupno} RSD</strong>
-            </div>
+              <button className="confirm-btn"
+                onClick={() => setOrderError(false)}>
+                  Pokušaj ponovo
+              </button>
+            </>
+          ) : (
+            <>
 
-            <button
-              className="confirm-btn"
-              onClick={handleConfirmOrder}
-            >
-                Potvrdi porudžbinu
-            </button>
+           <h3>Potvrda porudžbine</h3>
+               <label>Adresa isporuke</label>
+                  <input id="adresaInput"
+                         type="text"
+                         placeholder="Unesite adresu..."
+                  />
+
+                <div className="payment-method">
+                  <p>Način plaćanja</p>
+                    <label className="radio-option">
+                        <input type="radio" name="payment" />
+                        Plaćanje karticom
+                    </label>
+
+                    <label className="radio-option">
+                        <input type="radio" name="payment" />
+                        Plaćanje pouzećem
+                    </label>
+                </div>
+
+                <div className="modal-total">
+                    Ukupno: <strong>{ukupno} RSD</strong>
+                </div>
+
+                <button className="confirm-btn" onClick={handleConfirmOrder}>
+                    Potvrdi porudžbinu
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
-      </>
+    </>
   );
 };
 

@@ -162,7 +162,7 @@ h1, h2, h3,
 
 .review-form{
   max-width: 520px;
-  margin: 24px 0;
+  margin: 40px auto;  
   padding: 16px;
   border: 1px solid #e6e6e6;
   border-radius: 12px;
@@ -175,7 +175,7 @@ h1, h2, h3,
 }
 
 .review-form textarea{
-  width: 100%;
+  width:500px;
   min-height: 110px;
   padding: 10px 12px;
   border: 1px solid #dcdcdc;

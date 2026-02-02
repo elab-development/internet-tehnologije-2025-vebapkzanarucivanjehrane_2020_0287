@@ -6,7 +6,7 @@ import '../styles/Navbar.css'
 const Navbar = () => {
 
 const location = useLocation();
- const navigate = useNavigate();
+const navigate = useNavigate();
 const [isAuth, setIsAuth] = useState(false);
 
 useEffect(() => {
@@ -21,14 +21,14 @@ useEffect(() => {
 const handleLogout = async () => {
   try {
     await api.post("/logout");
-  } catch (err) {
+  }catch (err) {
     console.error("Greška pri logout-u:", err);
-    // čak i ako padne poziv, svejedno ćemo da očistimo storage
+
+    // čak i ako padne poziv, svejedno cemo da očistimo storage
   } finally {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
    
-
     setIsAuth(false);
     navigate("/login");
   }
@@ -47,9 +47,9 @@ return (
           <>
             <Link to="/">Početna</Link>
             <Link to="/restaurants">Restorani</Link>
-            <button className="logout-button" onClick={handleLogout}>
-              Logout
-            </button>
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
           </>
         ) : (
           <>
