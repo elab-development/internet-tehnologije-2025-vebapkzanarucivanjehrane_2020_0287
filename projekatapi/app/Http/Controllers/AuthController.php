@@ -18,7 +18,6 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'ime' => 'required|string|max:255',
             'prezime' => 'required|string|max:255',
-            'role' => 'required|in:kupac,dostavljac,admin', //dodata validacija za ulogu
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'kontakt' => 'nullable|string|max:255' //optionalno jer korisnik moze biti kupac koji nema kontakt polje
@@ -32,16 +31,15 @@ class AuthController extends Controller
         $user = User::create([
             'ime' => $data['ime'],
             'prezime' => $data['prezime'],
-            'role' => $data['role'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        if($data['role'] === 'dostavljac'){
+        if($user['role'] === 'dostavljac'){
             //ako je uloga dostavljac, kreiramo i unos u tabeli dostavljaci
             Dostavljac::create([
                 'user_id' => $user->id,
-                'ime' => $data['ime'],
-                'kontakt' => $data['kontakt'] ?? '', //ako nije prosledjen kontakt, stavlja se prazan string
+                'ime' => $user['ime'],
+                'kontakt' => $user['kontakt'] ?? '', //ako nije prosledjen kontakt, stavlja se prazan string
             ]);
         }
 

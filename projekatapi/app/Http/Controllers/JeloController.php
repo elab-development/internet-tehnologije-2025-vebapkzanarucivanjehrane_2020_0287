@@ -104,4 +104,10 @@ class JeloController extends Controller
         $jelo->delete();
         return response()->json(['message' => 'Jelo je uspešno obrisano'], 200);
     }
+
+    public function jelaZaRestoran($restoranId)
+    {
+        $jela = Jelo::where('restoran_id', $restoranId)->get();
+        return response()->json($jela, 200);
+    }
 }

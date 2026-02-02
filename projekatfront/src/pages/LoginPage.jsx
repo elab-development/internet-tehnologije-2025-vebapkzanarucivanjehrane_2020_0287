@@ -26,9 +26,9 @@ const LoginPage = () => {
     
           try{
               const res = await api.post('/login', {email, password}) //await ceka odgovor od servera pa nastavlja sa narednim linijama koda
-              const { token, user, message } = res.data;
+              const { access_token, user, message } = res.data;
 
-              localStorage.setItem("token", token); //cuvamo token u local storage-u
+              localStorage.setItem("token", access_token.split('|')[1]); //cuvamo token u local storage-u
               localStorage.setItem("user", JSON.stringify (user)); //user je objekat, pa ga pretvaramo u string pre cuvanja u local storage
 
               setInfo(message ||  "Uspešno ste prijavljeni.");

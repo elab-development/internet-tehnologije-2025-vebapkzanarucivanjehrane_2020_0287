@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/RestaurantCard.css"
+import { FaRegStar } from "react-icons/fa";
+
 
 const RestaurantCard = ({restaurant}) => {
   
@@ -19,7 +21,10 @@ const RestaurantCard = ({restaurant}) => {
         <div className="restaurant-card-img">
            <img src ={restaurant.image_url}></img>
         </div>
-        <p>{restaurant.prosecna_ocena}</p>
+        <p> <FaRegStar /> {restaurant.recenzije_avg_ocena
+            ? Number(restaurant.recenzije_avg_ocena).toFixed(2) //backend vraca string, Number pretvara u int, toFixed zaokruzuje na 2 decimale
+            : "Nema ocena"}
+        </p>
         
       </div>
   );

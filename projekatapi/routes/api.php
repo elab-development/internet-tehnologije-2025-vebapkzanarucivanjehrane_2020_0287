@@ -20,9 +20,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
+    Route::post('/restorani/{id}/recenzije', [RecenzijaController::class, 'store']);
+    
 });
 
-
+//ruta za otvaranje Menu-a na stranici RestaurantDetails
+Route::get('/restorani/{id}/jela', [JeloController::class, 'jelaZaRestoran']);
 
 Route::get('/restorani', [RestoranController::class, 'index']);
 Route::get('/restorani/{id}', [RestoranController::class, 'show']);

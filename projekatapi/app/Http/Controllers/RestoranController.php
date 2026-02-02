@@ -13,7 +13,7 @@ class RestoranController extends Controller
      */
     public function index()
     {
-       return Restoran::with('recenzije')->get();
+       return Restoran::withAvg('recenzije', 'ocena')->get(); //racuna nam prosecnu ocenu
     }
 
     /**

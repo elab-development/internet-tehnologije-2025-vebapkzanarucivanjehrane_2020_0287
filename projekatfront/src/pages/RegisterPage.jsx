@@ -37,7 +37,7 @@ const RegisterPage = () => {
             formData.append("prezime", prezime);
             formData.append("email", email);
             formData.append("password", password);
-            formData.append("confirmPassword", confirmPassword);
+            formData.append("password_confirmation", confirmPassword);
                       
             if (slika) {
               formData.append("slika", slika);

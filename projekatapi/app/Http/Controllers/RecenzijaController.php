@@ -6,6 +6,7 @@ use App\Models\Recenzija;
 use App\Models\Restoran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RecenzijaController extends Controller
 {
@@ -28,34 +29,37 @@ class RecenzijaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required|exists:users,id',
-            'restoran_id' => 'required|exists:restorani,id',
-            'ocena' => 'required|integer|min:1|max:5',
-            'komentar' => 'nullable|string|max:200',
+   public function store(Request $request , $id)
+{
+    $validator = Validator::make($request->all(), [
+        'ocena' => 'required|integer|min:1|max:5',
+        'komentar' => 'nullable|string|max:200',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'message' => 'Neuspešna validacija',
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    $recenzija = Recenzija::create([
+        'user_id' => Auth::id(),
+        'restoran_id' => $id, 
+        'ocena' => $request->ocena,
+        'komentar' => $request->komentar,
+    ]);
+
+    $prosecnaOcena = Recenzija::where('restoran_id', $recenzija->restoran_id)
+        ->avg('ocena');
+
+    Restoran::where('id', $recenzija->restoran_id)
+        ->update([
+            'prosecna_ocena' => round($prosecnaOcena, 2)
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Neuspešna validacija',
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
-        $recenzija = Recenzija::create($validator->validated());
-
-        $prosecnaOcena = Recenzija::where('restoran_id', $recenzija->restoran_id)
-            ->avg('ocena');
-
-        Restoran::where('id', $recenzija->restoran_id)
-            ->update([
-                'prosecna_ocena' => round($prosecnaOcena, 2)
-            ]);
-
-        return response()->json($recenzija, 201);
-    }
+    return response()->json($recenzija, 201);
+}
 
     /**
      * Display the specified resource.
