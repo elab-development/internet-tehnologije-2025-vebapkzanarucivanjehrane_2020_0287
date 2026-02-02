@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import api  from "../api/api";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const styles = {
   navbar: {
@@ -53,6 +54,36 @@ const styles = {
 };
 
 const Navbar = () => {
+
+const location = useLocation();
+ const navigate = useNavigate();
+const [isAuth, setIsAuth] = useState(false);
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  setIsAuth(!!token);
+  console.log("Location changed to:", location.pathname);
+  console.log("Is Authenticated:", isAuth);
+  console.log("Token:", token);
+}, [location]);
+
+
+const handleLogout = async () => {
+  try {
+    await api.post("/logout");
+  } catch (err) {
+    console.error("Greška pri logout-u:", err);
+    // čak i ako padne poziv, svejedno ćemo da očistimo storage
+  } finally {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+   
+
+    setIsAuth(false);
+    navigate("/login");
+  }
+}
+
   return (
     <nav style={styles.navbar}>
       <div style={styles.left}>
@@ -66,12 +97,49 @@ const Navbar = () => {
         <Link to="/" style={styles.link}>
           Početna
         </Link>
-        <Link to="/login" style={styles.link}>
+
+{isAuth ? (
+  <>
+<Link to="/" style={styles.link}>Početna</Link>
+
+<button
+
+type = "button"
+className = "href href-button"
+onClick={handleLogout}
+style={{
+    background: "none",
+    border: "none",
+    color: "#265d34",
+    fontSize: "15px",
+    fontWeight: 500,
+    padding: "6px 14px",
+    borderRadius: "999px",
+    cursor: "pointer",
+    transition: "all 0.25s ease"
+  }}
+>
+  Logout
+</button>
+
+</>
+
+):(
+  <>
+<Link to="/login" style={styles.link}>
           Login
         </Link>
         <Link to="/register" style={styles.link}>
           Registracija
         </Link>
+        </>
+)
+
+
+
+}
+
+
       </div>
     </nav>
   );
