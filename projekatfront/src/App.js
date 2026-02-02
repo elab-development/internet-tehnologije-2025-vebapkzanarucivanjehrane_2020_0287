@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage';
 import Restaurants from './pages/Restaurants';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import RestaurantDetails from './pages/RestaurantDetails';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path= "/register" element={<RegisterPage />} />
           <Route path="/restaurants" element={<Restaurants />} />
+          <Route path="/restaurants/:id" element={<RestaurantDetails />} />
         </Routes>
         <Footer></Footer>
       </BrowserRouter>

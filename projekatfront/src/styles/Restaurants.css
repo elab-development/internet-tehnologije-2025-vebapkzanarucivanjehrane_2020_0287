@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* sav tekst */
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* naslovi */
+h1, h2, h3,
+.auth-title,
+.homepage-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+
+.restaurants-wrapper{
+    display: flex;
+    flex-wrap :wrap;
+    justify-content: space-around;
+    gap:30px;
+
+
+}

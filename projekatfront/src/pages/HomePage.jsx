@@ -1,6 +1,6 @@
 import React from "react";
-import FeatureCard from "../components/FeatureCard";
-import { FaBolt, FaCreditCard, FaRegClock, FaShoppingCart, FaStore, FaUtensils} from 'react-icons/fa';
+import FeatureCard from "../components/FeatureCard";import { FaBolt, FaCreditCard, FaRegClock, FaShoppingCart, FaStore, FaUtensils} from 'react-icons/fa';
+
 import "../styles/HomePage.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';

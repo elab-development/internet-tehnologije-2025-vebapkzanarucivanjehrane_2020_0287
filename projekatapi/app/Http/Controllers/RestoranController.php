@@ -13,7 +13,7 @@ class RestoranController extends Controller
      */
     public function index()
     {
-        return Restoran::all();
+       return Restoran::with('recenzije')->get();
     }
 
     /**
@@ -51,7 +51,8 @@ class RestoranController extends Controller
      */
     public function show($id)
     {
-        return Restoran::find($id);
+       $restoran = Restoran::with('recenzije')->find($id);
+        return $restoran;
     }
 
     /**

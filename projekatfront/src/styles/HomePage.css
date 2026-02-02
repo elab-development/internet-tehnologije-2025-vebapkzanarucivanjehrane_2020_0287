@@ -1,22 +1,30 @@
-.homepage {
-  min-height: 100vh;
-  background: linear-gradient(180deg, #FBF7F2, #F6EFE6);
-  color: #265d34;
-  font-family: "Inter", system-ui, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* sav tekst */
+body {
+  font-family: 'DM Sans', sans-serif;
 }
 
-.homepage-main {
-  margin: 0;
-  padding: 80px 200px;
-  display: flex;
-  justify-content: space-between;
-  gap:100px;
+/* naslovi */
+h1, h2, h3,
+.auth-title,
+.homepage-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
 
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 .homepage {
   min-height: 100vh;
   position: relative;
+
+  color: #265d34;
 
   background-image:
     linear-gradient(
@@ -27,6 +35,14 @@
 
   background-size: cover;
   background-position: center;
+}
+
+.homepage-main {
+  margin: 0;
+  padding: 80px 200px;
+  display: flex;
+  justify-content: space-between;
+  gap:100px;
 }
 
 /* leva strana*/

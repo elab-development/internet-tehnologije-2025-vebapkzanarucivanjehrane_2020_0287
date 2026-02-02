@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* sav tekst */
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* naslovi */
+h1, h2, h3,
+.auth-title,
+.homepage-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.restaurant-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.restaurant-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.restaurant-card-img {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.restaurant-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.restaurant-card:hover .restaurant-card-img img {
+  transform: scale(1.05);
+}
+
+.restaurant-card p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f5a623;
+  margin-top: 4px;
+}

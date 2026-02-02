@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import "../styles/LoginPage.css";
+import TextField from '../components/TextField';
 
 const LoginPage = () => {
 
@@ -37,14 +38,18 @@ const LoginPage = () => {
           }catch(error){
               console.log(error);
               setLoading(false);
-              if(error.response.status == 401){
-                setError("Neispravan email ili lozinka. Pokušajte ponovo.");
-              }else if(error.response.status == 422){
-                setError("Molimo popunite sva polja ispravno.");
-              }else{
-                setError("Došlo je do greške. Pokušajte ponovo kasnije.");
-            }
-          }
+                if (error.response) {
+                  if (error.response.status === 401) {
+                    setError("Neispravan email ili lozinka. Pokušajte ponovo.");
+                  } else if (error.response.status === 422) {
+                    setError("Molimo popunite sva polja ispravno.");
+                  } else if (error.response.status === 404){
+                    setError("Nalog sa ovom email adresom ne postoji.");
+                  }
+                }else {
+                  setError("Ne može se uspostaviti veza sa serverom.");
+                }
+}
         }
 
   return (
@@ -55,32 +60,27 @@ const LoginPage = () => {
           Uloguj se na svoj nalog i uživaj u brzoj i sigurnoj dostavi hrane iz omiljenih restorana.  
         </p> 
 
-        <form className = "auth-form" on onSubmit={handleSubmit}>
-          <div className="auth-field">
-            <label htmlFor="email">Email adresa</label>
-            <input 
+        <form className = "auth-form" onSubmit={handleSubmit}>
+
+             <TextField
               id="email" 
-              type="email" 
+              label = "Email adresa" 
               placeholder="ime.prezime@example.com"
-              value={email} 
+              value={email}
               onChange={(e) => setEmail(e.target.value)} //svaki put kada korisnik unese karakter u input polje, poziva se ova funkcija
-              required 
+              required
             />
-          </div>
 
-          <div className = "auth-field">
-            <label htmlFor="password">Lozinka</label>
-            <input 
+              <TextField
               id="password"
-              type="password"  
-              placeholder = "Unesite lozinku"
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
+              label = "Lozinka"
+              type = "password"
+              placeholder="Unesite lozinku (min 8 karaktera)"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               showPasswordToggle = {true}
-              required 
+              required
             />
-          </div>
-
 
           {info && <div className="auth-alert-info">{info} </div>}
           {error && <div className="auth-alert-error">{error} </div>}

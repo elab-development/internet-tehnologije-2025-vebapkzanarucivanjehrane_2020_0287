@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Recenzija;
+use App\Models\Restoran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,7 +32,7 @@ class RecenzijaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
-            'restoran_id' => 'required|exists:restorani,restoran_id',
+            'restoran_id' => 'required|exists:restorani,id',
             'ocena' => 'required|integer|min:1|max:5',
             'komentar' => 'nullable|string|max:200',
         ]);
@@ -44,6 +45,15 @@ class RecenzijaController extends Controller
         }
 
         $recenzija = Recenzija::create($validator->validated());
+
+        $prosecnaOcena = Recenzija::where('restoran_id', $recenzija->restoran_id)
+            ->avg('ocena');
+
+        Restoran::where('id', $recenzija->restoran_id)
+            ->update([
+                'prosecna_ocena' => round($prosecnaOcena, 2)
+            ]);
+
         return response()->json($recenzija, 201);
     }
 

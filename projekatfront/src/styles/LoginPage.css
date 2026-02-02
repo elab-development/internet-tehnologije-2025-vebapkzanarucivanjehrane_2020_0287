@@ -1,3 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* sav tekst */
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* naslovi */
+h1, h2, h3,
+.auth-title,
+.homepage-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 .auth-page {
   position: relative;
   min-height: 80vh;
@@ -38,8 +60,8 @@
   z-index: 3;
 
   background-color: #E6EAD8;
-  max-width: 420px;
-  padding: 40px 35px;
+  max-width: 360px;
+  padding: 28px 26px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   animation: fadeInUp 0.6s ease;
