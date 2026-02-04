@@ -305,3 +305,27 @@ body {
     font-size: 34px;
   }
 }
+
+.courier-btn {
+  margin-top: 16px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff7a32, #ff5e0e);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 16px rgba(255, 122, 50, 0.35);
+}
+
+.courier-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(255, 94, 14, 0.45);
+}
+
+.courier-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(255, 94, 14, 0.35);
+}

@@ -1,0 +1,128 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.25s ease-out;
+   margin-top: 80px;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal input,
+.modal select,
+.modal textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+  outline: none;
+  border-color: #ff7a32;
+  box-shadow: 0 0 0 2px rgba(255, 122, 50, 0.2);
+}
+
+.modal button {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(135deg, #ff7a32, #ff5e0e);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.modal button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 94, 14, 0.4);
+}
+
+.modal-message {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ff7a32;
+}
+
+.success-popup {
+  background-color: #e6fffa;
+  border: 1px solid #38b2ac;
+  color: #065f46;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.success-popup button {
+  margin-top: 10px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #38b2ac;
+  color: white;
+  cursor: pointer;
+}
+
+.error-popup {
+  background-color: #fee2e2;
+  border: 1px solid #ef4444;
+  color: #7f1d1d;
+  font-size: 14px; 
+  padding: 10px 14px;
+  margin-top: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}

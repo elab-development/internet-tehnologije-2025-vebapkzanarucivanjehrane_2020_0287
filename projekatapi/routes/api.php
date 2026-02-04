@@ -35,6 +35,8 @@ Route::get('/recenzije/{id}', [RecenzijaController::class, 'show']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
+
+    Route::post('/dostavljaci', [DostavljacController::class, 'store']);
        
                 
     Route::middleware('role:kupac')->group(function () {
@@ -54,7 +56,6 @@ Route::middleware('auth:sanctum')->group(function () {
 //upravljanje dostavljacima:  sve
 Route::get('/dostavljaci', [DostavljacController::class, 'index']);
 Route::get('/dostavljaci/{id}', [DostavljacController::class, 'show']);
-Route::post('/dostavljaci', [DostavljacController::class, 'store']);
 Route::put('/dostavljaci/{id}', [DostavljacController::class, 'update']);
 Route::delete('/dostavljaci/{id}', [DostavljacController::class, 'destroy']);
 //upravljanje jelima:

@@ -9,7 +9,7 @@ const navigate = useNavigate();
   const features = [
     {
       id: '1',
-      Icon: <FaUtensils />,
+      Icon: FaUtensils,
       title: "Izaberi restoran",
       items: [
         "Pregledaj restorane u svojoj blizini",
@@ -19,7 +19,7 @@ const navigate = useNavigate();
     },
     {
       id: '2',
-      Icon: <FaShoppingCart />,
+      Icon: FaShoppingCart ,
       title: "Dodaj u korpu",
       items: [
         "Izaberi jela i količinu",
@@ -29,7 +29,7 @@ const navigate = useNavigate();
     },
     {
       id: '3',
-      Icon: <FaRegClock />,
+      Icon: FaRegClock,
       title: "Sačekaj dostavu",
       items: [
         "Prati porudžbinu u realnom vremenu",
@@ -42,7 +42,7 @@ const navigate = useNavigate();
   const whyUsFeatures = [
     {
       id: '4',
-      Icon: <FaBolt />,
+      Icon: FaBolt ,
       title: "Brza dostava",
       items: [
         "Dostavljači u tvojoj blizini",
@@ -51,7 +51,7 @@ const navigate = useNavigate();
     },
     {
       id: '5',
-      Icon: <FaStore />,
+      Icon: FaStore,
       title: "Veliki izbor restorana",
       items: [
         "Brza hrana, domaća kuhinja",
@@ -60,7 +60,7 @@ const navigate = useNavigate();
     },
     {
       id: '6',
-      Icon: <FaCreditCard />,
+      Icon: FaCreditCard,
       title: "Sigurno plaćanje",
       items: [
         "Plaćanje karticom",
@@ -77,7 +77,8 @@ const navigate = useNavigate();
         "Povećaj broj porudžbina",
         "Veća vidljivost restorana",
         "Jednostavno upravljanje ponudom"
-      ]
+      ],
+      type:"restoran"
     },
     {
       id: '8',
@@ -86,7 +87,8 @@ const navigate = useNavigate();
         "Radi kada želiš",
         "Zarada po isporuci",
         "Fleksibilno radno vreme"
-      ]
+      ], 
+      type:"dostavljac"
     }
   ];
 
@@ -154,6 +156,7 @@ const navigate = useNavigate();
                     key={feature.id}
                     title={feature.title}
                     items={feature.items}
+                    type={feature.type}
                 />
                 ))}
             </section>

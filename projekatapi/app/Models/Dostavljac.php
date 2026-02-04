@@ -10,8 +10,12 @@ class Dostavljac extends Model
     use HasFactory;
     protected $table = 'dostavljaci';
     protected $fillable = [
+        'user_id',
         'ime',
         'kontakt',
+        'grad',
+        'vozilo',
+        'napomena',
     ];
 
     public function porudzbine() {
