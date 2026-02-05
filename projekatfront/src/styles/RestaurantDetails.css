@@ -1,37 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
-
-/* sav tekst */
-body {
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* naslovi */
-h1, h2, h3,
-.auth-title,
-.homepage-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
 
 .restaurant-details-page {
   max-width: 900px;
   margin: 40px auto;
-  padding: 20px;
 }
 
 .restaurant-details-page h1 {
   font-size: 32px;
-  margin-bottom: 20px;
   color: #222;
 }
 
-/* Slika restorana */
+/* slika restorana */
 .restaurant-details-page img {
   width: 100%;
-  max-height: 420px;
+  max-height: 350px;
   object-fit: cover;
   border-radius: 14px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
@@ -121,7 +105,7 @@ h1, h2, h3,
   cursor: pointer;
 }
 
-/* Jedno jelo */
+/* jedno jelo */
 .menu-item {
   border-bottom: 1px solid #eee;
   padding: 12px 0;
@@ -160,63 +144,108 @@ h1, h2, h3,
   background-color: #e56d00;
 }
 
-.review-form{
-  max-width: 520px;
-  margin: 40px auto;  
-  padding: 16px;
-  border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  background: #fff;
+.reviews-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr; /* levo forma, desno recenzije */
+  gap: 40px;
+  margin-top: 40px;
+  align-items: flex-start;
 }
 
-.review-form h3{
-  margin: 0 0 12px;
+.recenzija-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);;
+  gap: 20px;
+}
+
+.review-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+}
+
+.review-form h3 {
+  margin-bottom: 12px;
   font-size: 18px;
 }
 
-.review-form textarea{
-  width:500px;
+.review-form textarea {
+  width: 95%;
   min-height: 110px;
   padding: 10px 12px;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
-  outline: none;
-  resize: vertical;
   font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #dcdcdc;
+  resize: vertical;
   margin-bottom: 12px;
 }
 
-.review-form textarea:focus{
+.review-form textarea:focus {
   border-color: #bdbdbd;
 }
 
-.review-form select{
+.review-form select {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
-  outline: none;
   font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #dcdcdc;
   margin-bottom: 12px;
   background: #fff;
 }
 
-.review-form button{
+.review-form button {
   width: 100%;
   padding: 10px 12px;
-  border: none;
+  font-size: 14px;
   border-radius: 10px;
+  border: none;
   background: #111;
   color: #fff;
-  font-size: 14px;
   cursor: pointer;
-  transition: transform 0.05s ease, opacity 0.2s ease;
 }
 
-.review-form button:hover{
-  opacity: 0.9;
+.recenzija-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
-.review-form button:active{
-  transform: scale(0.99);
+.recenzija-header {
+  display: flex;
+  gap: 25px;
+  align-self: center;
+  margin-bottom: 8px;
 }
+
+.recenzija-user {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.recenzija-ocena {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ff6a00;
+}
+
+.recenzija-komentar {
+  font-size: 14px;
+  line-height: 1.5;
+  flex-grow: 1;
+  overflow: hidden;
+
+}
+
+

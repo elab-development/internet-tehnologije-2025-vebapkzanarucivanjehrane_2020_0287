@@ -8,6 +8,7 @@ const FloatingCart = ({ korpa, setKorpa }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(true);
   
   function handleRemove(index) {
     setKorpa(prev =>
@@ -38,6 +39,15 @@ const FloatingCart = ({ korpa, setKorpa }) => {
  
   const ukupno = korpa.reduce((sum, jelo) => sum + Number(jelo.cena), 0);
 
+    if (!isCartOpen) {
+      return (
+        <button className="floating-cart-button"
+          onClick={() => setIsCartOpen(true)}>
+        <IoCartOutline /> Korpa
+      </button>
+    );
+  }
+
   return (
     <>
     <div className="floating-cart">
@@ -45,6 +55,11 @@ const FloatingCart = ({ korpa, setKorpa }) => {
           <IoCartOutline className="cart-icon" />
           Korpa
         </h4>
+
+        <button className="cart-close"
+          onClick={() => setIsCartOpen(false)}>
+            <IoClose />
+        </button>
 
       {korpa.length === 0 ? (
         <p className="empty-cart">Korpa je prazna</p>
@@ -67,7 +82,9 @@ const FloatingCart = ({ korpa, setKorpa }) => {
           </div>
         </>
       )}
-      <button id="poruciButton" onClick={handlePoruciClick}>PORUČI</button>
+      <button id="poruciButton" onClick={handlePoruciClick}>
+        PORUČI
+      </button>
     </div>
 
     {isModalOpen && (

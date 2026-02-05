@@ -13,6 +13,7 @@ const CourierModal = ({ onClose }) => {
 
   const[error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const isAuth = !!localStorage.getItem("token");
 
   const handleChange = (e) => {
     setForm({...form,[e.target.name]: e.target.value});
@@ -42,6 +43,8 @@ const CourierModal = ({ onClose }) => {
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h2>Prijava za dostavljača</h2>
 
+    {isAuth ? (
+      <>
         <form onSubmit={handleSubmit}>
           <input
             name="ime"
@@ -84,6 +87,13 @@ const CourierModal = ({ onClose }) => {
             Pošalji zahtev
           </button>
         </form>
+          </>
+        ) : (
+          <div className="auth-required">
+            <p>
+              Da bi poslali prijavu za dostavljača, potrebno je da se prvo prijavite
+              ili napravite nalog.
+            </p>
 
         {error && (
             <div className="error-popup">
@@ -98,8 +108,10 @@ const CourierModal = ({ onClose }) => {
                         U redu
                     </button>
             </div>
-)}
+            )}
 
+        </div>
+        )}
       </div>
     </div>
   );

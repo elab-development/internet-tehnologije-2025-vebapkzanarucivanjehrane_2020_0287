@@ -5,6 +5,12 @@ const RecenzijaCard = ({recenzija}) => {
   return  (
     <div className="recenzija-card">
       <div className="recenzija-header">
+        <span className="recenzija-user">
+          {recenzija.korisnik
+              ? `${recenzija.korisnik.ime} ${recenzija.korisnik.prezime}`
+              : "Anonimno"}
+        </span>
+
         <span className="recenzija-ocena">
           <FaRegStar /> {recenzija.ocena}
         </span>

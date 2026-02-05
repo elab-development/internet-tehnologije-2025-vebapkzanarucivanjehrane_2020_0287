@@ -111,6 +111,7 @@ useEffect( ()=>{
           </div>
         )}
 
+        <div className="reviews-layout">
           <div className="review-form">
               <h3>Ostavi recenziju</h3>
 
@@ -140,6 +141,7 @@ useEffect( ()=>{
              recenzija = {recenzija} />
              )}
           </div>
+        </div>
           <FloatingCart korpa={korpa} setKorpa={setKorpa} />
        </div>
   )

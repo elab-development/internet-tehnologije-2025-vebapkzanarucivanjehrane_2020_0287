@@ -10,25 +10,21 @@ import RestaurantDetails from './pages/RestaurantDetails';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter> 
-      <Navbar></Navbar>
-        <Routes>
-          <Route path="/" element={<Pocetna />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path= "/register" element={<RegisterPage />} />
-          <Route path="/restaurants" element={<Restaurants />} />
-          <Route path="/restaurants/:id" element={<RestaurantDetails />} />
-        </Routes>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar></Navbar>
+        <div className="page-content">
+          <Routes>
+            <Route path="/" element={<Pocetna />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path= "/register" element={<RegisterPage />} />
+            <Route path="/restaurants" element={<Restaurants />} />
+            <Route path="/restaurants/:id" element={<RestaurantDetails />} />
+          </Routes>
+          </div>
         <Footer></Footer>
-      </BrowserRouter>
-
-
-
-
-
-
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 const HomePage = () => {
 const navigate = useNavigate();
+const isAuth = !!localStorage.getItem("token");
+
   const features = [
     {
       id: '1',
@@ -101,6 +103,7 @@ const navigate = useNavigate();
             Poruči iz najboljih restorana u svom gradu - bez čekanja, bez gužve, samo nekoliko klikova.
           </p>
 
+      {!isAuth && (
           <div className="homepage-hero-actions">
             <button className = "btn-secondary"
               onClick={() => navigate("/register")}>
@@ -112,6 +115,7 @@ const navigate = useNavigate();
                   Prijavi se
             </button>
           </div>
+           )}
         </div>
 
         <div className="homepage-right">

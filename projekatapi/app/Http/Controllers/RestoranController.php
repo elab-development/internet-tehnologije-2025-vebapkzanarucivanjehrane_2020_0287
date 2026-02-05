@@ -51,7 +51,7 @@ class RestoranController extends Controller
      */
     public function show($id)
     {
-       $restoran = Restoran::with('recenzije')->find($id);
+       $restoran = Restoran::with('recenzije.korisnik')->find($id);
         return $restoran;
     }
 

@@ -21,7 +21,7 @@ class Recenzija extends Model
          ];
 
          public function korisnik() {
-            return $this->belongsTo(User::class);
+            return $this->belongsTo(User::class,'user_id');
         }
 
         public function restoran() {

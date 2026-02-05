@@ -53,6 +53,7 @@ return (
           </>
         ) : (
           <>
+            <Link to="/">Početna</Link>
             <Link to="/login">Login</Link>
             <Link to="/register">Registracija</Link>
           </>

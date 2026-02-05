@@ -1,49 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
-
-/* sav tekst */
-body {
-  font-family: 'DM Sans', sans-serif;
-}
-
 .homepage-title {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
 }
 
-.homepage {
-  position: relative;
-  overflow: hidden;
-}
-
-.homepage > * {
-  position: relative;
-  z-index: 3;
-}
-
-.homepage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("../assets/foodimmg.png");
-  background-size: cover;
-  background-position: center;
-  filter: blur(6px);
-  transform: scale(1.05);
-  z-index: 1;
-}
-
-/* svetliji overlay preko slike */
-.homepage::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(224, 224, 218, 0.75);
-  z-index: 2;
-}
-
 .homepage-main {
-  margin: 0;
-  padding: 80px 200px;
+  padding: 50px;
   display: flex;
   justify-content: space-between;
   gap:100px;
@@ -230,7 +191,9 @@ body {
 /* sekcija i grid za partnere */
 .homepage-grid-partner {
   max-width: 900px;
-  margin: 60px auto 80px;
+  margin-top: 0;
+  padding-top: 0;
+  margin: 16px auto 80px;
   padding: 0 32px;
 
   display: grid;
@@ -240,24 +203,22 @@ body {
 
 .homepage-grid-partner h3 {
   width: 100%;
+  margin-bottom: 10px;
   grid-column: 1 / -1;
   font-size: 30px;
   color:#452517;
-  margin-bottom: 10px;
   text-align: center;
+
 }
 
 /* kartice za partnere */
 .homepage-grid-partner .featureCard {
   aspect-ratio: auto;
-  min-height: 220px;
-
-  background: linear-gradient(135deg, #ffd9c0, #fbb07f);
+  min-height: 180px; 
+  background: linear-gradient(135deg, #ffd9c0, #ffe4d2);
   border: 1px solid #ffd2b8;
   border-radius: 22px;
-
-  padding: 28px;
-
+  padding: 20px;
   box-shadow: 0 12px 30px rgba(107, 142, 35, 0.25);
 }
 
@@ -270,7 +231,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 25px;
+  font-size: 20px;
   color: #452517;
 }
 
@@ -307,11 +268,13 @@ body {
 }
 
 .courier-btn {
+  align-self: center;
   margin-top: 16px;
   padding: 12px 22px;
-  border: none;
+  border:none;
+  width:70%;
   border-radius: 25px;
-  background: linear-gradient(135deg, #ff7a32, #ff5e0e);
+  background: linear-gradient(135deg, #ff9c66, #ff7a38);
   color: #fff;
   font-size: 14px;
   font-weight: 600;

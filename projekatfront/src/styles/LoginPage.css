@@ -27,31 +27,8 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: 40px 20px;
+  padding:18px;
   overflow: hidden;
-}
-
-/*blurovana pozadina*/
-.auth-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("../assets/foodimmg.png");
-  background-size: cover;
-  background-position: center;
-  filter: blur(6px);
-  transform: scale(1.05); 
-  z-index: 1;
-}
-
-/*svetliji overlay preko slike*/
-.auth-page::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(179, 179, 175, 0.75);
-  z-index: 2;
 }
 
 /* forma */
@@ -59,7 +36,7 @@ select {
   position: relative;
   z-index: 3;
   background-color: #f4f6ec;
-  max-width: 360px;
+  max-width: 450px;
   padding: 28px 26px;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
@@ -80,7 +57,6 @@ select {
   line-height: 1.6;
 }
 
-/**/
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -159,7 +135,7 @@ select {
 }
 
 .auth-extra a {
-  color: #e06358;
+  color: #fa6d2c;
   font-weight: 600;
   text-decoration: none;
 }
@@ -186,8 +162,8 @@ select {
   padding: 8px 14px;
   border: none;
   border-radius: 8px;
-  background: #e06358;
-  color: #e06358;
+  background: #ffe3ca;
+  color: #ff6224;
   font-weight: 600;
   cursor: pointer;
 }
