@@ -1,170 +1,125 @@
-import React from "react";
-import FeatureCard from "../components/FeatureCard";import { FaBolt, FaCreditCard, FaRegClock, FaShoppingCart, FaStore, FaUtensils} from 'react-icons/fa';
-
+import React, { useState } from "react";
+import { FaUtensils, FaShoppingCart, FaRegClock, FaBolt, FaPizzaSlice, FaHamburger, FaLeaf, FaFish } from 'react-icons/fa';
 import "../styles/HomePage.css";
-import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import CourierModal from "../components/CourierModal";
+
 const HomePage = () => {
-const navigate = useNavigate();
-const isAuth = !!localStorage.getItem("token");
-
-  const features = [
-    {
-      id: '1',
-      Icon: FaUtensils,
-      title: "Izaberi restoran",
-      items: [
-        "Pregledaj restorane u svojoj blizini",
-        "Filtriraj po kategorijama",
-        "Izaberi ono što ti se jede"
-      ]
-    },
-    {
-      id: '2',
-      Icon: FaShoppingCart ,
-      title: "Dodaj u korpu",
-      items: [
-        "Izaberi jela i količinu",
-        "Dodaj priloge i napomene",
-        "Jednostavna potvrda porudžbine"
-      ]
-    },
-    {
-      id: '3',
-      Icon: FaRegClock,
-      title: "Sačekaj dostavu",
-      items: [
-        "Prati porudžbinu u realnom vremenu",
-        "Brza i sigurna isporuka",
-        "Hrana stiže topla"
-      ]
-    }
-  ];
-
-  const whyUsFeatures = [
-    {
-      id: '4',
-      Icon: FaBolt ,
-      title: "Brza dostava",
-      items: [
-        "Dostavljači u tvojoj blizini",
-        "Minimalno vreme čekanja"
-      ]
-    },
-    {
-      id: '5',
-      Icon: FaStore,
-      title: "Veliki izbor restorana",
-      items: [
-        "Brza hrana, domaća kuhinja",
-        "Picerije i poslastičarnice"
-      ]
-    },
-    {
-      id: '6',
-      Icon: FaCreditCard,
-      title: "Sigurno plaćanje",
-      items: [
-        "Plaćanje karticom",
-        "Plaćanje pouzećem"
-      ]
-    }
-  ];
-
-  const partnerFeatures = [
-    {
-      id: '7',
-      title: "ZA RESTORANE",
-      items: [
-        "Povećaj broj porudžbina",
-        "Veća vidljivost restorana",
-        "Jednostavno upravljanje ponudom"
-      ],
-      type:"restoran"
-    },
-    {
-      id: '8',
-      title: "ZA DOSTAVLJAČE",
-      items: [
-        "Radi kada želiš",
-        "Zarada po isporuci",
-        "Fleksibilno radno vreme"
-      ], 
-      type:"dostavljac"
-    }
-  ];
+  const navigate = useNavigate();
+  const isAuth = !!localStorage.getItem("token");
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="homepage">
-      <div className="homepage-main">
-        <div className="homepage-left">
-          <h1 className="homepage-title">NomNomGo - Tvoja omiljena hrana, dostavljena brzo i sigurno</h1>
-          <p className="homepage-subtitle">
-            Poruči iz najboljih restorana u svom gradu - bez čekanja, bez gužve, samo nekoliko klikova.
-          </p>
 
-      {!isAuth && (
-          <div className="homepage-hero-actions">
-            <button className = "btn-secondary"
-              onClick={() => navigate("/register")}>
-                  Kreiraj nalog
-              </button>
-
-              <button className = "btn-primary"
-                onClick={() => navigate("/login")}>
-                  Prijavi se
-            </button>
+      <div className="hero">
+        <div className="hero-left">
+          <div className="hero-tag">
+            <div className="hero-tag-dot"></div>
+            <span>Dostava hrane #1</span>
           </div>
-           )}
+          <h1>Hrana<br/>koju <em>voliš,</em><br/><span className="outline">dostavljena brzo.</span></h1>
+          <p className="hero-sub">Poruči iz najboljih restorana u svom gradu — bez čekanja, samo nekoliko klikova.</p>
+          {!isAuth && (
+            <div className="hero-actions">
+              <button className="btn-main" onClick={() => navigate("/login")}>
+                Naruči sada <span className="arrow">→</span>
+              </button>
+              <button className="btn-ghost" onClick={() => navigate("/register")}>
+                Registruj se
+              </button>
+            </div>
+          )}
+          <div className="hero-stats">
+            <div className="hero-stat"><strong>100+</strong><span>restorana</span></div>
+            <div className="hero-stat"><strong>30 min</strong><span>prosečna dostava</span></div>
+            <div className="hero-stat"><strong>50k+</strong><span>korisnika</span></div>
+          </div>
         </div>
 
-        <div className="homepage-right">
-            <section className="homepage-section">
-              <h2>Šta nudi NomNomGo?</h2>
-                <p className="homepage-section-subtitle">
-                    Brza, sigurna i pouzdana dostava hrane iz tvojih omiljenih restorana, direktno na tvoja vrata.
-                </p>
-            </section>
-
-            <section className="homepage-grid">
-              {features.map((feature, index) => (
-                <FeatureCard
-                  key={feature.id}
-                  Icon = {feature.Icon}
-                  title={feature.title}
-                  items={feature.items}
-                />
-                ))}
-            </section>
-
-            <section className="homepage-title-whyus">
-                <h3>Zašto baš mi?</h3>
-                <div className="homepage-grid-whyus">
-                  {whyUsFeatures.map((feature, index) => (
-                     <FeatureCard
-                       key={feature.id}
-                        Icon = {feature.Icon}
-                        title={feature.title}
-                        items={feature.items}
-                    />
-                    ))}
-                </div>
-             </section>
-           </div>
+        <div className="hero-right">
+          <div className="hero-img-wrap">
+            <div className="food-circle">🍔</div>
+            <div className="float-badge2"><span>★ 4.9</span></div>
+            <div className="float-badge">
+              <div className="float-badge-icon"><FaBolt /></div>
+              <div><p>Brza dostava</p><span>~25 minuta</span></div>
+            </div>
+            <div className="float-price"><span>od 490 din</span></div>
           </div>
-          
-            <section className="homepage-grid-partner">
-              <h3>Postani naš partner!</h3>
-                {partnerFeatures.map((feature, index) => (
-                  <FeatureCard
-                    key={feature.id}
-                    title={feature.title}
-                    items={feature.items}
-                    type={feature.type}
-                />
-                ))}
-            </section>
+        </div>
       </div>
+
+      <div className="marquee-wrap">
+        <div className="marquee">
+          <span>Brza dostava</span><span className="marquee-dot"> ✦ </span>
+          <span>100+ restorana</span><span className="marquee-dot"> ✦ </span>
+          <span>Sigurno plaćanje</span><span className="marquee-dot"> ✦ </span>
+          <span>Ocena 4.9</span><span className="marquee-dot"> ✦ </span>
+          <span>Brza dostava</span><span className="marquee-dot"> ✦ </span>
+          <span>100+ restorana</span><span className="marquee-dot"> ✦ </span>
+          <span>Sigurno plaćanje</span><span className="marquee-dot"> ✦ </span>
+          <span>Ocena 4.9</span><span className="marquee-dot"> ✦ </span>
+        </div>
+      </div>
+
+      <div className="categories">
+        <div className="cat-header">
+          <h2>Šta ti se jede?</h2>
+          <Link to="/restorani">Svi restorani →</Link>
+        </div>
+        <div className="cat-grid">
+          <div className="cat-card"><div className="cat-icon"><FaPizzaSlice /></div><h3>Pizza</h3><span>12 restorana</span></div>
+          <div className="cat-card"><div className="cat-icon"><FaHamburger /></div><h3>Burgeri</h3><span>18 restorana</span></div>
+          <div className="cat-card"><div className="cat-icon"><FaFish /></div><h3>Sushi</h3><span>7 restorana</span></div>
+          <div className="cat-card"><div className="cat-icon"><FaLeaf /></div><h3>Salate</h3><span>9 restorana</span></div>
+        </div>
+      </div>
+
+      <div className="how">
+        <div className="how-header">
+          <div>
+            <p className="how-label">Kako funkcioniše naša aplikacija</p>
+            <h2>3 jednostavna <em>koraka</em></h2>
+          </div>
+        </div>
+        <div className="how-grid">
+          <div className="how-step">
+            <div className="how-num">01</div>
+            <div className="how-step-icon"><FaUtensils /></div>
+            <h3>Izaberi restoran</h3>
+            <p>Pregledaj restorane u blizini i filtriraj po kategorijama.</p>
+          </div>
+          <div className="how-step">
+            <div className="how-num">02</div>
+            <div className="how-step-icon"><FaShoppingCart /></div>
+            <h3>Dodaj u korpu</h3>
+            <p>Izaberi jela, dodaj priloge i potvrdi porudžbinu.</p>
+          </div>
+          <div className="how-step">
+            <div className="how-num">03</div>
+            <div className="how-step-icon"><FaRegClock /></div>
+            <h3>Sačekaj dostavu</h3>
+            <p>Prati porudžbinu uživo i čekaj da hrana stigne topla.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="partner-section">
+        <div className="pcard del">
+          <p className="pcard-tag">Za dostavljače</p>
+          <h2>Radi kada želiš</h2>
+          <ul>
+            <li>Zarada po isporuci</li>
+            <li>Fleksibilno radno vreme</li>
+            <li>Brza isplata</li>
+          </ul>
+          <button className="courier-btn pcta" onClick={() => setOpen(true)}>Postani dostavljač</button>
+        </div>
+      </div>
+
+      {open && <CourierModal onClose={() => setOpen(false)} />}
+    </div>
   );
 };
 

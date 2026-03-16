@@ -7,6 +7,9 @@ import Restaurants from './pages/Restaurants';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import RestaurantDetails from './pages/RestaurantDetails';
+import AdminPage from './pages/AdminPage';
+import CourierPage from './pages/CourierPage';
+
 
 function App() {
   return (
@@ -20,6 +23,8 @@ function App() {
             <Route path= "/register" element={<RegisterPage />} />
             <Route path="/restaurants" element={<Restaurants />} />
             <Route path="/restaurants/:id" element={<RestaurantDetails />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/dostave" element={<CourierPage />} />
           </Routes>
           </div>
         <Footer></Footer>

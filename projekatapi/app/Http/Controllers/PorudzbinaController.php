@@ -159,4 +159,39 @@ class PorudzbinaController extends Controller
         $porudzbina->delete();
         return response()->json(['message' => 'Porudžbina je uspešno obrisana'], 200);
     }
+
+    public function mojeDostave()
+    {
+        $user = Auth::user();
+    
+        $dostavljac = \App\Models\Dostavljac::where('user_id', $user->id)->first();
+    
+          if (!$dostavljac) {
+            return response()->json(['message' => 'Niste dostavljač'], 403);
+        }
+
+        $porudzbine = Porudzbina::where('dostavljac_id', $dostavljac->id)
+            ->orderBy('vreme_kreiranja', 'desc')
+            ->get();
+
+        return response()->json($porudzbine);
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $porudzbina = Porudzbina::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|in:u_pripremi,dostava_u_toku,isporuceno,otkazano'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Neispravan status'], 422);
+     }
+
+        $porudzbina->status = $request->status;
+        $porudzbina->save();
+
+        return response()->json(['message' => 'Status ažuriran.']);
+}
 }

@@ -1,190 +1,317 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap');
-
-/* sav tekst */
-body {
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* naslovi */
-h1, h2, h3,
-.auth-title,
-.homepage-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
-
-button,
-input,
-textarea,
-select {
-  font-family: inherit;
-}
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
 .auth-page {
-  position: relative;
-  min-height: 80vh;
-
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding:18px;
+  background: #FDF6F2;
+  padding: 8px 24px;
+}
+
+.auth-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 960px;
+  min-height: 580px;
+  border-radius: 28px;
   overflow: hidden;
+  box-shadow: 0 24px 64px rgba(28, 15, 10, 0.12);
 }
 
-/* forma */
-.auth-card {
+.auth-left {
+  background: #35180c;
+  padding: 52px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   position: relative;
-  z-index: 3;
-  background-color: #f4f6ec;
-  max-width: 450px;
-  padding: 28px 26px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  animation: fadeInUp 0.6s ease;
+  overflow: hidden;
+  text-align: center;
 }
 
-/* naslov i podnaslov*/
-.auth-title {
-  color:  #452517;
+.auth-left::before {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(255, 107, 43, 0.08);
+  pointer-events: none;
+}
+
+.auth-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+}
+.auth-logo span { color: #FF6B2B; }
+
+.auth-left h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.auth-left p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.auth-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.perk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.perk-dot {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 107, 43, 0.12);
+  border: 1px solid rgba(255, 107, 43, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FF6B2B;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.perk span {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+.auth-right {
+  background: #fff;
+  padding: 36px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 10px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.auth-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1C0F0A;
+  letter-spacing: -0.03em;
+  margin-bottom: 2px;
 }
 
 .auth-subtitle {
-  font-size: 14px;
-  color: #452517;
-  margin-bottom: 30px;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  color: #aaa;
+  font-weight: 300;
+  margin-bottom: 16px;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
-/*input polja*/
-.auth-field {
-    width:100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.auth-field label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #452517;
-  margin-bottom: 6px;
-}
-
-.auth-field input {
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid #c4cfc7;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-}
-
-.auth-field input:focus {
-  outline: none;
-  border-color: #ea924f;
-  box-shadow: 0 0 0 2px rgba(143, 113, 60, 0.15);
-}
-
-/*dugme za prijavu */
-.auth-button {
-  align-self: center;
-  margin-top: 10px;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 12px;
-  transition: all 0.25s ease;
-}
-
-.auth-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* info i error alert*/
 .auth-alert-info {
-  background-color: #91eb9a;
-  color: #eee6e6;
-  padding: 10px 12px;
+  font-size: 0.82rem;
+  color: #1E7A3C;
+  background: #EDFAF3;
+  border: 1px solid #B6EAD0;
   border-radius: 10px;
-  font-size: 13px;
-  text-align: center;
+  padding: 10px 14px;
 }
 
 .auth-alert-error {
-  background-color: #e06358;
-  color: #eee6e6;
-  padding: 10px 12px;
+  font-size: 0.82rem;
+  color: #9B2020;
+  background: #FEF0F0;
+  border: 1px solid #FACACA;
   border-radius: 10px;
-  font-size: 13px;
-  text-align: center;
+  padding: 10px 14px;
 }
 
-/*poruka i link za registraciju*/
-.auth-extra {
-  margin-top: 15px;
-  text-align: center;
-  font-size: 13px;
-  color:#452517;
-}
-
-.auth-extra a {
-  color: #fa6d2c;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.auth-extra a:hover {
-  text-decoration: underline;
-}
-
-/* animacije */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* dugme u file inputu */
-.auth-field input[type="file"]::file-selector-button {
-  margin-right: 10px;
-  padding: 8px 14px;
+.auth-button {
+  background: #FF6B2B;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  background: #ffe3ca;
-  color: #ff6224;
-  font-weight: 600;
+  border-radius: 50px;
+  padding: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
   cursor: pointer;
+  width: 100%;
+  margin-top: 4px;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+.auth-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 43, 0.3);
+}
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-extra {
+  text-align: center;
+  margin-top: 4px;
+}
+.auth-extra p {
+  font-size: 0.82rem;
+  color: #aaa;
+}
+.auth-extra a {
+  color: #FF6B2B;
+  text-decoration: none;
+  font-weight: 500;
+}
+.auth-extra a:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .auth-box { grid-template-columns: 1fr; }
+  .auth-left { display: none; }
+  .auth-right { padding: 40px 24px; }
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #1C0F0A;
+  text-align: center;
 }
 
 .auth-input-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .auth-input-wrapper input {
   width: 100%;
+  padding: 12px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: #1C0F0A;
+  background: #FDF6F2;
+  border: 1.5px solid #E8D5CB;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-align: center;
 }
 
-/* dugme sakrij/otkrij sifru */
+.auth-input-wrapper input::placeholder {
+  color: #c4a899;
+  font-weight: 300;
+  text-align:center;
+}
+
+.auth-input-wrapper input:focus {
+  border-color: #FF6B2B;
+  box-shadow: 0 0 0 3px rgba(255, 107, 43, 0.1);
+  background: #fff;
+}
+
 .toggle-password-btn {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
+  right: 14px;
+  background: none;
   border: none;
-  font-size: 12px;
-  color: #452517;
   cursor: pointer;
+  color: #c4a899;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color 0.2s;
+}
+.toggle-password-btn:hover { color: #FF6B2B; }
+
+.auth-input-wrapper input[type="password"],
+.auth-input-wrapper input[type="text"] {
+  padding-right: 42px;
+}
+
+.auth-hint {
+  font-size: 0.74rem;
+  color: #aaa;
+  font-weight: 300;
+}
+
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #FDF6F2;
+  border: 1.5px solid #E8D5CB;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  font-size: 0.85rem;
+  color: #c4a899;
+  text-align: left;
+}
+.file-upload:hover { border-color: #FF6B2B; }
+
+.file-upload-btn {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #FF6B2B;
+  background: rgba(255, 107, 43, 0.08);
+  padding: 4px 12px;
+  border-radius: 50px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.auth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auth-optional {
+  font-size: 0.75rem;
+  color: #aaa;
+  font-weight: 300;
 }

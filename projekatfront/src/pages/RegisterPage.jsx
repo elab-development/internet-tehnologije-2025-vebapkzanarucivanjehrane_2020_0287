@@ -4,6 +4,7 @@ import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import "../styles/LoginPage.css";
 import TextField from '../components/TextField';
+import { FaPizzaSlice, FaBolt, FaCreditCard } from 'react-icons/fa';
 
 const RegisterPage = () => {
 
@@ -70,85 +71,92 @@ const RegisterPage = () => {
           }
 
   return (
-    <div className="auth-page">
-      <div className = "auth-card">
-        <h1 className = "auth-title">Registracija na NomNomGo</h1>
-        <p className = "auth-subtitle">
-          Kreirajte nalog i uživajte u brzoj i sigurnoj dostavi hrane iz omiljenih restorana.  
-        </p>
+  <div className="auth-page">
+    <div className="auth-box">
 
-        <form className = "auth-form" on onSubmit={handleSubmit}>
-          <TextField
-              id="ime"
-              label = "Ime"
-              value={ime}
-              placeholder="Unesite ime"
-              onChange={(e) => setIme(e.target.value)}
-              required
-            />
-
-          <TextField
-              id="prezime"
-              label = "Prezime"
-              placeholder="Unesite prezime"
-              value={prezime}
-              onChange={(e) => setPrezime(e.target.value)}
-              required
-            />
-
-          <TextField
-              id="email" 
-              label = "Email" 
-              placeholder="ime.prezime@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-
-          <TextField
-              id="password"
-              label = "Lozinka"
-              type = "password"
-              placeholder="Unesite lozinku (min 8 karaktera)"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              showPasswordToggle = {true}
-              required
-            />
-
-          <TextField
-              id="confirmPassword"
-              label = "Potvrda lozinke"
-              type="password"
-              placeholder="Ponovo unesite lozinku"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              showPasswordToggle = {true}
-              required
-            />
-
-          <div className="auth-field">
-            <label htmlFor="slika">Profilna slika (opciono)</label>
-            <input
-              id="slika"
-              type="file"
-              accept="image/png, image/jpeg, image/jpg"
-              onChange={handleFileChange} //funkcija koja radi sa fajlovima
-            />
-              <small className = "auth-hint">Dozvoljeni formati: PNG, JPEG, JPG. Maksimalna veličina slike 2MB</small>
-          </div>
-
-          {info && <div className="auth-alert-info">{info} </div>}
-          {error && <div className="auth-alert-error">{error} </div>}
-
-          <button type = "submit" className = "btn-primary auth-button" disabled={loading}>
-            {loading ? "Registracija u toku..." : "Registruj se"}
-          </button>
-
-        </form>
+      <div className="auth-left">
+        <div className="auth-logo">NomNom<span>GO</span></div>
+            <h2>Kreirajte nalog</h2>
+               <p>Pridružite se hiljadama korisnika koji naručuju iz omiljenih restorana svaki dan.</p>
+        <div className="auth-perks">
+          <div className="perk"><div className="perk-dot"><FaPizzaSlice /></div><span>100+ restorana u ponudi</span></div>
+          <div className="perk"><div className="perk-dot"><FaBolt /></div><span>Dostava za ~30 minuta</span></div>
+          <div className="perk"><div className="perk-dot"><FaCreditCard /></div><span>Sigurno plaćanje</span></div>
+        </div>
       </div>
+
+      <div className="auth-right">
+        <div className="auth-card">
+          <h1 className="auth-title">Registracija</h1>
+          <p className="auth-subtitle">Popunite podatke i počnite sa naručivanjem.</p>
+
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <div className="auth-row">
+              <TextField 
+                id="ime" 
+                label="Ime" 
+                placeholder="Unesite ime" 
+                value={ime} onChange={(e) => 
+                setIme(e.target.value)} required />
+              
+              <TextField 
+                id="prezime" 
+                label="Prezime" 
+                placeholder="Unesite prezime" 
+                value={prezime} onChange={(e) => 
+                setPrezime(e.target.value)} required />
+            </div>
+
+              <TextField 
+                id="email" 
+                label="Email" 
+                placeholder="ime.prezime@example.com" 
+                value={email} onChange={(e) => 
+                setEmail(e.target.value)} required />
+            
+              <TextField 
+                id="password" 
+                label="Lozinka" 
+                type="password" 
+                placeholder="Min 8 karaktera" 
+                value={password} onChange={(e) => setPassword(e.target.value)} 
+                showPasswordToggle={true} required />
+            
+              <TextField 
+                id="confirmPassword" 
+                label="Potvrda lozinke" 
+                type="password" 
+                placeholder="Ponovo unesite lozinku" 
+                value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} 
+                showPasswordToggle={true} required />
+
+            <div className="auth-field">
+                <label htmlFor="slika">Profilna slika <span className="auth-optional">(opciono)</span></label>
+                <label htmlFor="slika" className="file-upload">
+                    <span>{slika ? slika.name : "Izaberite sliku..."}</span>
+                    <span className="file-upload-btn">Choose</span>
+              </label>
+                <input id="slika" type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleFileChange} style={{ display: 'none' }} />
+                  <small className="auth-hint">PNG, JPEG, JPG — max 2MB</small>
+            </div>
+
+            {info && <div className="auth-alert-info">{info}</div>}
+            {error && <div className="auth-alert-error">{error}</div>}
+
+            <button type="submit" className="auth-button" disabled={loading}>
+              {loading ? "Registracija u toku..." : "Registruj se"}
+            </button>
+
+            <div className="auth-extra">
+              <p>Već imate nalog? <Link to="/login">Prijavite se</Link></p>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
-  );
+  </div>
+);
   
 }
 

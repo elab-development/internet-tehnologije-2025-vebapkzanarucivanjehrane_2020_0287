@@ -134,4 +134,28 @@ class DostavljacController extends Controller
         $dostavljac->delete();
         return response()->json(['message' => 'Dostavljač je uspešno obrisan'], 200);
     }
+
+    public function updateStatus(Request $request, $id){
+        $dostavljac = Dostavljac::findOrFail($id);
+    
+        $validator = Validator::make($request->all(), [
+            'status' => 'required|in:odobren,odbijen'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Neispravan status'], 422);
+        }
+
+        $dostavljac->status = $request->status;
+        $dostavljac->save();
+
+        // ako je odobren, menjamo mu role u 'dostavljac'
+        if ($request->status === 'odobren') {
+            $dostavljac->user->update(['role' => 'dostavljac']);
+        }
+
+        return response()->json(['message' => 'Status uspešno ažuriran.']);
+}
+
+
 }

@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+.admin-page {
+  max-width: 860px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+.admin-page h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1C0F0A;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.admin-card {
+  background: #fff;
+  border: 1.5px solid #E8D5CB;
+  border-radius: 16px;
+  padding: 14px 24px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-card-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.admin-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1C0F0A;
+  margin: 0;
+  min-width: 80px;
+}
+
+.admin-card-left p:last-child {
+  font-size: 0.82rem;
+  color: #7A5B44;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-card-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.status-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+.status-na_cekanju { background: #FFF3E0; color: #E8A020; }
+.status-odobren    { background: #EDFAF3; color: #1E7A3C; }
+.status-odbijen    { background: #FEF0F0; color: #9B2020; }
+
+.admin-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-odobri {
+  background: #FF6B2B;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-odobri:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255,107,43,0.3);
+}
+
+.btn-odbij {
+  background: transparent;
+  color: #9B2020;
+  border: 1.5px solid #9B2020;
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-odbij:hover {
+  background: #9B2020;
+  color: #fff;
+}

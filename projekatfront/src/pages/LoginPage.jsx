@@ -4,6 +4,7 @@ import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import "../styles/LoginPage.css";
 import TextField from '../components/TextField';
+import { FaPizzaSlice, FaBolt, FaCreditCard } from 'react-icons/fa';
 
 const LoginPage = () => {
 
@@ -33,7 +34,10 @@ const LoginPage = () => {
 
               setInfo(message ||  "Uspešno ste prijavljeni.");
               setLoading(false);
-              setTimeout(() => navigate('/restaurants'), 700); //nakon uspesne prijave, preusmeravamo korisnika na stranicu sa restoranima
+              const role = user.role;
+              if (role === 'admin') setTimeout(() => navigate('/admin'), 700);
+              else if (role === 'dostavljac') setTimeout(() => navigate('/dostave'), 700);
+              else setTimeout(() => navigate('/restaurants'), 700); //nakon uspesne prijave, preusmeravamo korisnika na stranicu sa restoranima
 
           }catch(error){
               console.log(error);
@@ -53,48 +57,57 @@ const LoginPage = () => {
         }
 
   return (
-    <div className="auth-page">
-      <div className = "auth-card">
-        <h1 className = "auth-title">Prijava na NomNomGo</h1>
-        <p className = "auth-subtitle">
-          Uloguj se na svoj nalog i uživaj u brzoj i sigurnoj dostavi hrane iz omiljenih restorana.  
-        </p> 
+  <div className="auth-page">
+    <div className="auth-box">
 
-        <form className = "auth-form" onSubmit={handleSubmit}>
+      <div className="auth-left">
+        <div className="auth-logo">NomNom<span>GO</span></div>
+        <h2>Dobrodošli nazad!</h2>
+        <p>Prijavite se i naručite iz omiljenih restorana za nekoliko klikova.</p>
+        <div className="auth-perks">
+          <div className="perk"><div className="perk-dot"><FaPizzaSlice></FaPizzaSlice></div><span>100+ restorana u ponudi</span></div>
+          <div className="perk"><div className="perk-dot"><FaBolt></FaBolt></div><span>Dostava za ~30 minuta</span></div>
+          <div className="perk"><div className="perk-dot"><FaCreditCard></FaCreditCard></div><span>Sigurno plaćanje</span></div>
+        </div>
+      </div>
 
-             <TextField
-              id="email" 
-              label = "Email adresa" 
+      <div className="auth-right">
+        <div className="auth-card">
+          <h1 className="auth-title">Prijava</h1>
+          <p className="auth-subtitle">Unesite vaše podatke za pristup nalogu.</p>
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <TextField
+              id="email"
+              label="Email adresa"
               placeholder="ime.prezime@example.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} //svaki put kada korisnik unese karakter u input polje, poziva se ova funkcija
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
-
-              <TextField
+            <TextField
               id="password"
-              label = "Lozinka"
-              type = "password"
+              label="Lozinka"
+              type="password"
               placeholder="Unesite lozinku (min 8 karaktera)"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              showPasswordToggle = {true}
+              showPasswordToggle={true}
               required
             />
-
-          {info && <div className="auth-alert-info">{info} </div>}
-          {error && <div className="auth-alert-error">{error} </div>}
-  
-          <button type = "submit" className = "btn-primary auth-button" disabled={loading}>
-            {loading ? "Prijavljivanje..." : "Prijavi se"}
-          </button>
-
-          <div className = "auth-extra">
-            <p>Nemate nalog? <Link to="/register">Registrujte se</Link></p>
-          </div>
-        </form>
+            {info && <div className="auth-alert-info">{info}</div>}
+            {error && <div className="auth-alert-error">{error}</div>}
+            <button type="submit" className="auth-button" disabled={loading}>
+              {loading ? "Prijavljivanje..." : "Prijavi se"}
+            </button>
+            <div className="auth-extra">
+              <p>Nemate nalog? <Link to="/register">Registrujte se</Link></p>
+            </div>
+          </form>
+        </div>
       </div>
+
     </div>
+  </div>
   )
 }
 

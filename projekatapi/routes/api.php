@@ -47,6 +47,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/recenzije', [RecenzijaController::class, 'store']);
     });
     
+    Route::middleware('role:dostavljac')->group(function () {
+        //SAMO DOSTAVLJAC
+    Route::get('/moje-dostave', [PorudzbinaController::class, 'mojeDostave']);
+    Route::patch('/porudzbine/{id}/status', [PorudzbinaController::class, 'updateStatus']);
+});
+
     Route::middleware('role:admin')->group(function () {
         //SAMO ADMIN
 //upravljanje restoranima:
@@ -56,6 +62,7 @@ Route::middleware('auth:sanctum')->group(function () {
 //upravljanje dostavljacima:  sve
 Route::get('/dostavljaci', [DostavljacController::class, 'index']);
 Route::get('/dostavljaci/{id}', [DostavljacController::class, 'show']);
+Route::patch('/dostavljaci/{id}/status', [DostavljacController::class, 'updateStatus']); //posebna ruta za azuriranje samo statusa dostavljaca
 Route::put('/dostavljaci/{id}', [DostavljacController::class, 'update']);
 Route::delete('/dostavljaci/{id}', [DostavljacController::class, 'destroy']);
 //upravljanje jelima:

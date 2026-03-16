@@ -1,251 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
 .restaurant-details-page {
-  max-width: 900px;
-  margin: 40px auto;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+  font-family: 'DM Sans', sans-serif;
 }
 
-.restaurant-details-page h1 {
-  font-size: 32px;
-  color: #222;
-}
-
-/* slika restorana */
-.restaurant-details-page img {
+/* Hero */
+.rd-hero {
+  position: relative;
   width: 100%;
-  max-height: 350px;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  height: 420px;
+  border-radius: 0 0 32px 32px;
+  overflow: hidden;
+  margin-bottom: 48px;
 }
 
-/* Wrapper za recenzije */
-.recenzija-wrapper {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: grid;
-  gap: 30px;
-}
-
-.recenzija-card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 14px 16px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-}
-
-.recenzija-ocena {
-  font-weight: bold;
-  color: #f59e0b;
-  margin-bottom: 6px;
-}
-
-.recenzija-komentar {
-  color: #444;
-  line-height: 1.5;
-}
-
-.button-menu {
-  margin: 20px 0;
-  padding: 10px 22px;
-  background-color: #ff7a00;
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.button-menu:hover {
-  background-color: #e56d00;
-  transform: translateY(-2px);
-}
-
-.button-menu:active {
-  transform: translateY(0);
-}
-
-/* Tamna pozadina preko cele stranice */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+.rd-hero-img {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+}
+
+.rd-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28,15,10,0.85) 0%, rgba(28,15,10,0.2) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 40px;
+  text-align: center;
+}
+
+.rd-hero-overlay h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.rd-hero-overlay p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.rd-menu-btn {
+  background: #FF6B2B;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 32px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.rd-menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,107,43,0.4);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 
-/* Sam popup prozor */
 .menu-modal {
-  background: white;
+  background: #fff;
   width: 90%;
   max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
-  border-radius: 14px;
-  padding: 25px;
+  border-radius: 20px;
+  padding: 28px;
   position: relative;
+  text-align: center;
 }
 
-/* Dugme X */
+.menu-modal h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1C0F0A;
+  margin-bottom: 20px;
+}
+
 .close-btn {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 16px;
+  right: 16px;
   border: none;
   background: none;
   font-size: 22px;
   cursor: pointer;
-}
-
-/* jedno jelo */
-.menu-item {
-  border-bottom: 1px solid #eee;
-  padding: 12px 0;
-}
-
-.price {
-  font-weight: bold;
+  color: #7A5B44;
 }
 
 .menu-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #eee;
-  padding: 12px 0;
+  border-bottom: 1px solid #F0E6E0;
+  padding: 14px 0;
+  gap: 16px;
+  text-align: left;
+}
+
+.menu-item h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1C0F0A;
+  margin-bottom: 4px;
+}
+
+.menu-item p {
+  font-size: 0.8rem;
+  color: #7A5B44;
 }
 
 .menu-right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 6px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.price {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  color: #FF6B2B;
+  font-size: 0.95rem;
 }
 
 .add-to-cart-btn {
-  background-color: #ff7a00;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.add-to-cart-btn:hover {
-  background-color: #e56d00;
-}
-
-.reviews-layout {
-  display: grid;
-  grid-template-columns: 380px 1fr; /* levo forma, desno recenzije */
-  gap: 40px;
-  margin-top: 40px;
-  align-items: flex-start;
-}
-
-.recenzija-wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);;
-  gap: 20px;
-}
-
-.review-form {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #e6e6e6;
-}
-
-.review-form h3 {
-  margin-bottom: 12px;
-  font-size: 18px;
-}
-
-.review-form textarea {
-  width: 95%;
-  min-height: 110px;
-  padding: 10px 12px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: 1px solid #dcdcdc;
-  resize: vertical;
-  margin-bottom: 12px;
-}
-
-.review-form textarea:focus {
-  border-color: #bdbdbd;
-}
-
-.review-form select {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: 1px solid #dcdcdc;
-  margin-bottom: 12px;
-  background: #fff;
-}
-
-.review-form button {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: none;
-  background: #111;
+  background: #FF6B2B;
   color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 0.8rem;
   cursor: pointer;
+  transition: opacity 0.2s;
+}
+.add-to-cart-btn:hover { opacity: 0.85; }
+
+.rd-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 40px;
+  padding: 0 24px;
 }
 
-.recenzija-card {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 16px;
-  border: 1px solid #e6e6e6;
-  width: 200px;
-  height: 100px;
+.rd-review-form {
+  background: #fff;
+  border: 1.5px solid #E8D5CB;
+  border-radius: 20px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
+  gap: 14px;
+  height: fit-content;
 }
 
-.recenzija-header {
+.rd-review-form h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1C0F0A;
+}
+
+.rd-review-form textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 1.5px solid #E8D5CB;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.rd-review-form textarea:focus { border-color: #FF6B2B; }
+
+.rd-stars {
   display: flex;
-  gap: 25px;
-  align-self: center;
+  gap: 6px;
+}
+
+.star {
+  font-size: 22px;
+  color: #E8D5CB;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.star.active { color: #FF6B2B; }
+
+.rd-submit-btn {
+  background: #FF6B2B;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.rd-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,107,43,0.3);
+}
+
+.rd-reviews h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1C0F0A;
+  margin-bottom: 20px;
+}
+
+.rd-carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rd-review-card {
+  background: #fff;
+  border: 1.5px solid #E8D5CB;
+  border-radius: 16px;
+  padding: 50px 20px;
+  animation: slideIn 0.4s ease;
+  transition: transform 0.2s;
+}
+
+.rd-review-card:hover { transform: translateY(-2px); }
+
+.rd-review-card.active {
+  border-color: #FF6B2B;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rd-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
 }
 
-.recenzija-user {
-  font-size: 13px;
+.rd-review-user {
   font-weight: 600;
-  color: #555;
+  font-size: 0.88rem;
+  color: #1C0F0A;
 }
 
-.recenzija-ocena {
-  font-size: 13px;
+.rd-review-stars {
   display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #ff6a00;
+  gap: 2px;
+  color: #FF6B2B;
+  font-size: 12px;
 }
 
-.recenzija-komentar {
-  font-size: 14px;
-  line-height: 1.5;
-  flex-grow: 1;
-  overflow: hidden;
-
+.no-reviews {
+  color: #aaa;
+  font-size: 0.88rem;
 }
 
-
+@media (max-width: 768px) {
+  .rd-bottom { grid-template-columns: 1fr; }
+  .rd-hero { height: 300px; }
+  .rd-hero-overlay h1 { font-size: 1.8rem; }
+}

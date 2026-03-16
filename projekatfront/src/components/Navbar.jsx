@@ -8,10 +8,13 @@ const Navbar = () => {
 const location = useLocation();
 const navigate = useNavigate();
 const [isAuth, setIsAuth] = useState(false);
+const [role, setRole] = useState(null);
 
 useEffect(() => {
     const token = localStorage.getItem("token");
     setIsAuth(!!token);
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    setRole(user.role || null);
     console.log("Location changed to:", location.pathname);
     console.log("Is Authenticated:", isAuth);
     console.log("Token:", token);
@@ -43,21 +46,29 @@ return (
       </div>
 
       <div className="navbar">
-        {isAuth ? (
-          <>
-            <Link to="/">Početna</Link>
-            <Link to="/restaurants">Restorani</Link>
-              <button className="logout-button" onClick={handleLogout}>
-                Logout
-              </button>
-          </>
-        ) : (
-          <>
-            <Link to="/">Početna</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Registracija</Link>
-          </>
-        )}
+    {!isAuth ? (
+      <>
+        <Link to="/">Početna</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/register">Registracija</Link>
+      </>
+    ) : role === 'admin' ? (
+      <>
+        <Link to="/admin">Admin panel</Link>
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+      </>
+    ) : role === 'dostavljac' ? (
+      <>
+        <Link to="/dostave">Moje dostave</Link>
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+      </>
+    ) : (
+      <>
+        <Link to="/">Početna</Link>
+        <Link to="/restaurants">Restorani</Link>
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+      </>
+    )}
       </div>
     </div>
   );
