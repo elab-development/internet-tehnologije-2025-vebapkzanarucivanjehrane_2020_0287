@@ -162,7 +162,7 @@ const RestaurantDetails = () => {
         </div>
       </div>
 
-      <FloatingCart korpa={korpa} setKorpa={setKorpa} />
+      <FloatingCart korpa={korpa} setKorpa={setKorpa} restoran={restoran} />
     </div>
   );
 };

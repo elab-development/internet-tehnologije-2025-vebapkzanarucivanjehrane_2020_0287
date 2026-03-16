@@ -2,14 +2,35 @@ import { useState } from "react";
 import api from "../api/api";
 import "../styles/FloatingCart.css";
 import { IoClose, IoTrashOutline,IoCartOutline} from "react-icons/io5";
+import { getCoordinates } from "../utils/geocoding";
+import { MapContainer, TileLayer } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import "leaflet-routing-machine";
+import { useEffect, useRef } from "react";
+import RouteMap from "./RouteMap";
 
-const FloatingCart = ({ korpa, setKorpa }) => {
+const FloatingCart = ({ korpa, setKorpa, restoran }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(true);
+  const [routeMap, setRouteMap] = useState(null);
+  const mapRef = useRef(null);
   
+  async function prikaziRutu(adresa) {
+    const koordinateRestorana = await getCoordinates(restoran.lokacija);
+    const koordinateIsporuke = await getCoordinates(adresa);
+
+    if (!koordinateRestorana || !koordinateIsporuke) return;
+
+  setRouteMap({
+    start: [koordinateRestorana.lat, koordinateRestorana.lon],
+    end: [koordinateIsporuke.lat, koordinateIsporuke.lon],
+  });
+}
+
   function handleRemove(index) {
     setKorpa(prev =>
       prev.filter((_, i) => i !== index)
@@ -29,7 +50,8 @@ const FloatingCart = ({ korpa, setKorpa }) => {
     }).then((res) => {
         setOrderSuccess(true);
         setOrderError(false);      
-        setKorpa([]);               
+        setKorpa([]);
+        prikaziRutu(adresa);               
     }).catch((error) => {
         console.log(error)
         setOrderError(true);
@@ -107,7 +129,9 @@ const FloatingCart = ({ korpa, setKorpa }) => {
             <p className="success-text">
                 Hvala vam! Vaša porudžbina je uspešno poslata.
             </p>
-
+            {routeMap && (
+                <RouteMap start={routeMap.start} end={routeMap.end} />
+            )}
               <button className="confirm-btn" onClick={() => {
                   setIsModalOpen(false);
                   setOrderSuccess(false);
