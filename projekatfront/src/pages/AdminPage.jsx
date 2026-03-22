@@ -11,7 +11,15 @@ const AdminPage = () => {
 
   useEffect(() => {
     if (user.role !== 'admin') return; // ako nije admin, ne ucitavaj nista
-    api.get('/dostavljaci').then(res => setDostavljaci(res.data));
+    api.get('/dostavljaci').then(res => {
+      const sortirani = res.data.sort((a, b) => { //sortiramo dostavljace tako da oni koji su na cekanju budu prvi na listi
+        if (a.status === 'na_cekanju' && b.status !== 'na_cekanju') 
+          return -1;
+        if (b.status === 'na_cekanju' && a.status !== 'na_cekanju') 
+          return 1;
+        return 0;});
+      setDostavljaci(sortirani);
+    });
   }, []);
 
   // zastita - ako nije admin, vrati ga na početnu

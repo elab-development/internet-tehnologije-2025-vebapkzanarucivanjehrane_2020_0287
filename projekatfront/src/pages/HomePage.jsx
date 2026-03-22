@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { FaUtensils, FaShoppingCart, FaRegClock, FaBolt, FaPizzaSlice, FaHamburger, FaLeaf, FaFish } from 'react-icons/fa';
+import { FaUtensils, FaShoppingCart, FaRegClock, FaBolt, FaPizzaSlice, FaHamburger, FaLeaf, FaFish, FaLock, FaStar } from 'react-icons/fa';
 import "../styles/HomePage.css";
 import { Link, useNavigate } from 'react-router-dom';
 import CourierModal from "../components/CourierModal";
+import burgerImg from "../assets/burger.jpg";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const HomePage = () => {
           {!isAuth && (
             <div className="hero-actions">
               <button className="btn-main" onClick={() => navigate("/login")}>
-                Naruči sada <span className="arrow">→</span>
+                Naruči sada <span className="arrow"></span>
               </button>
               <button className="btn-ghost" onClick={() => navigate("/register")}>
                 Registruj se
@@ -39,29 +40,29 @@ const HomePage = () => {
 
         <div className="hero-right">
           <div className="hero-img-wrap">
-            <div className="food-circle">🍔</div>
-            <div className="float-badge2"><span>★ 4.9</span></div>
+            <div className="food-circle"> <img src={burgerImg} alt="burger" /> </div>
+            <div className="float-badge2"><span><FaStar /> 4.9</span></div>
             <div className="float-badge">
               <div className="float-badge-icon"><FaBolt /></div>
               <div><p>Brza dostava</p><span>~25 minuta</span></div>
             </div>
-            <div className="float-price"><span>od 490 din</span></div>
+            <div className="float-price"><span>već od 350 din</span></div>
           </div>
         </div>
       </div>
 
-      <div className="marquee-wrap">
-        <div className="marquee">
-          <span>Brza dostava</span><span className="marquee-dot"> ✦ </span>
-          <span>100+ restorana</span><span className="marquee-dot"> ✦ </span>
-          <span>Sigurno plaćanje</span><span className="marquee-dot"> ✦ </span>
-          <span>Ocena 4.9</span><span className="marquee-dot"> ✦ </span>
-          <span>Brza dostava</span><span className="marquee-dot"> ✦ </span>
-          <span>100+ restorana</span><span className="marquee-dot"> ✦ </span>
-          <span>Sigurno plaćanje</span><span className="marquee-dot"> ✦ </span>
-          <span>Ocena 4.9</span><span className="marquee-dot"> ✦ </span>
-        </div>
-      </div>
+    <div className="marquee-wrap">
+      <div className="marquee">
+        <span>Brza dostava</span><span className="marquee-dot"><FaBolt /></span>
+        <span>100+ restorana</span><span className="marquee-dot"><FaUtensils /></span>
+        <span>Sigurno plaćanje</span><span className="marquee-dot"><FaLock /></span>
+        <span>Ocena 4.9</span><span className="marquee-dot"><FaStar /></span>
+        <span>Brza dostava</span><span className="marquee-dot"><FaBolt /></span>
+        <span>100+ restorana</span><span className="marquee-dot"><FaUtensils /></span>
+        <span>Sigurno plaćanje</span><span className="marquee-dot"><FaLock /></span>
+        <span>Ocena 4.9</span><span className="marquee-dot"><FaStar /></span>
+    </div>
+  </div>
 
       <div className="categories">
         <div className="cat-header">

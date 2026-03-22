@@ -10,11 +10,14 @@ const RouteMap = ({ start, end }) => { //start i end su koordinate restorana i a
   const [ruteInfo, setRuteInfo] = useState(null);
 
   useEffect(() => {
-    if (!mapRef.current) return;
+    if (!mapRef.current) 
+      return;
 
-    const map = L.map(mapRef.current).setView(start, 13); //postavljamo centar mape na pocetak (restoran)
-
+    const map = L.map(mapRef.current).setView(start, 12); //postavljamo centar mape na pocetak (restoran)
+  
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map); //dodajemo OpenStreetMap podlogu na mapu
+    setTimeout(() => {map.invalidateSize(); } //da bi se mapa ispravno prikazala, moramo da sacekamo malo
+      , 100);
 
     const routingControl = L.Routing.control({ //crtanje rute pomocu Leaflet Routing Machine
       waypoints: [
@@ -32,8 +35,11 @@ const RouteMap = ({ start, end }) => { //start i end su koordinate restorana i a
             iconAnchor: [14, 28],
             popupAnchor: [0, -28],
         });
-        const label = i === 0 ? "Restoran" : "Adresa dostave";
-        return L.marker(waypoint.latLng, { icon }).bindPopup(label); //dodajemo marker sa odgovarajucom ikonicom
+        
+        const label = i === 0 ? //ako je prvi marker, labela je restoran, ako je drugi marker, labela je adresa dostave 
+          "Restoran" : 
+          "Adresa dostave";
+          return L.marker(waypoint.latLng, { icon }).bindPopup(label); //dodajemo marker sa odgovarajucom ikonicom
       },
     }).addTo(map);
 
@@ -42,7 +48,7 @@ const RouteMap = ({ start, end }) => { //start i end su koordinate restorana i a
       const km = (ruta.totalDistance / 1000).toFixed(1); //delimo sa 1000 da dobijemo kilometre
       const min = Math.round(ruta.totalTime / 60); //delimo sa 60 da dobijemo minute
       setRuteInfo({ km, min });
-      const container = document.querySelector('.leaflet-routing-container');
+      const container = document.querySelector('.leaflet-routing-container'); //sakrivamo dugmice za promenu rute
         if (container) container.style.display = 'none';
     });
 
@@ -59,7 +65,7 @@ const RouteMap = ({ start, end }) => { //start i end su koordinate restorana i a
             Procenjeno vreme dostave: <strong>{ruteInfo.min} min</strong> | <strong>{ruteInfo.km} km</strong>
          </p>
     )}
-      <div ref={mapRef} style={{ height: "300px", width: "100%", marginTop: "10px" }} />
+      <div ref={mapRef} style={{ height: "350px", width: "100%", minWidth: "300px", marginTop: "10px" }} /> 
     </div>
   );
 };

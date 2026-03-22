@@ -19,41 +19,41 @@ const LoginPage = () => {
 
 
   //login logika je u ovoj funkciji, poziva se kada se forma submituje
-      const handleSubmit = async(e) => {
-          e.preventDefault(); //sprecava refresh stranice prilikom submitovanja forme 
-          setLoading (true);
-          setError("");
-          setInfo("");
+  const handleSubmit = async(e) => {
+      e.preventDefault(); //sprecava refresh stranice prilikom submitovanja forme 
+      setLoading (true);
+      setError("");
+      setInfo("");
     
-          try{
-              const res = await api.post('/login', {email, password}) //await ceka odgovor od servera pa nastavlja sa narednim linijama koda
-              const { access_token, user, message } = res.data;
+    try{
+        const res = await api.post('/login', {email, password}) //await ceka odgovor od servera pa nastavlja sa narednim linijama koda
+        const { access_token, user, message } = res.data;
 
-              localStorage.setItem("token", access_token.split('|')[1]); //cuvamo token u local storage-u
-              localStorage.setItem("user", JSON.stringify (user)); //user je objekat, pa ga pretvaramo u string pre cuvanja u local storage
+        localStorage.setItem("token", access_token.split('|')[1]); //deli token na 2 dela, prvi je id, drugi je token (mi cuvamo token)
+        localStorage.setItem("user", JSON.stringify (user)); //user je objekat, pa ga pretvaramo u string pre cuvanja u local storage
 
-              setInfo(message ||  "Uspešno ste prijavljeni.");
-              setLoading(false);
-              const role = user.role;
-              if (role === 'admin') setTimeout(() => navigate('/admin'), 700);
-              else if (role === 'dostavljac') setTimeout(() => navigate('/dostave'), 700);
-              else setTimeout(() => navigate('/restaurants'), 700); //nakon uspesne prijave, preusmeravamo korisnika na stranicu sa restoranima
+        setInfo(message ||  "Uspešno ste prijavljeni.");
+        setLoading(false);
+        const role = user.role;
+            if (role === 'admin') setTimeout(() => navigate('/admin'), 700);
+            else if (role === 'dostavljac') setTimeout(() => navigate('/dostave'), 700);
+            else setTimeout(() => navigate('/restaurants'), 700); //nakon uspesne prijave, preusmeravamo korisnika na stranicu sa restoranima
 
-          }catch(error){
-              console.log(error);
-              setLoading(false);
-                if (error.response) {
-                  if (error.response.status === 401) {
-                    setError("Neispravan email ili lozinka. Pokušajte ponovo.");
-                  } else if (error.response.status === 422) {
-                    setError("Molimo popunite sva polja ispravno.");
-                  } else if (error.response.status === 404){
-                    setError("Nalog sa ovom email adresom ne postoji.");
-                  }
+    }catch(error){
+        console.log(error);
+        setLoading(false);
+          if (error.response) {
+              if (error.response.status === 401) {
+                  setError("Neispravan email ili lozinka. Pokušajte ponovo.");
+              } else if (error.response.status === 422) {
+                  setError("Molimo popunite sva polja ispravno.");
+              } else if (error.response.status === 404){
+                  setError("Nalog sa ovom email adresom ne postoji.");
+              }
                 }else {
                   setError("Ne može se uspostaviti veza sa serverom.");
                 }
-}
+            }
         }
 
   return (
