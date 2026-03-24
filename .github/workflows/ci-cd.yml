@@ -1,0 +1,47 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: pdo_mysql, pdo_sqlite, zip, bcmath, mbstring
+          coverage: none
+
+      - name: Install Composer Dependencies
+        working-directory: ./projekatapi
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Copy .env file for testing
+        working-directory: ./projekatapi
+        run: cp .env.example .env
+
+      - name: Generate App Key
+        working-directory: ./projekatapi
+        run: php artisan key:generate
+
+      - name: Create SQLite database for tests
+        working-directory: ./projekatapi
+        run: touch database/database.sqlite
+
+      - name: Run Tests
+        working-directory: ./projekatapi
+        run: php artisan test
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
